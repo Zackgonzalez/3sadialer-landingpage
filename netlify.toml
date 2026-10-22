@@ -17,3 +17,8 @@
   from = "/about"
   to = "/om-os"
   status = 301
+
+[[redirects]]
+  from = "/trust"
+  to = "/sikkerhed"
+  status = 301
