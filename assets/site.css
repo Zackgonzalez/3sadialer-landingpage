@@ -250,7 +250,7 @@ body.menu-open{overflow:hidden}
 .ab-hero h1{margin:0 auto;max-width:1000px}
 .ab-tl{position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
 .ab-tl::before{content:"";position:absolute;left:0;right:0;top:28px;height:2px;background:repeating-linear-gradient(90deg,#EB7A34 0 10px,transparent 10px 20px);opacity:.6}
-.ab-dot{width:56px;height:56px;border-radius:50%;background:#EB7A34;border:6px solid #FFEEDB;display:flex;align-items:center;justify-content:center;color:#1A1410;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;position:relative;z-index:1}
+.ab-dot{flex:none;width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,#F28A2E,#EB7A34 60%,#D9661F);color:#1A1410;display:flex;align-items:center;justify-content:center;font-family:'Geist Mono',monospace;font-weight:500;font-size:15px;letter-spacing:.04em;box-shadow:0 10px 24px -10px rgba(235,122,52,.7),inset 0 1px 0 rgba(255,255,255,.35);transition:transform .4s cubic-bezier(.3,1.5,.5,1)}.card:hover .ab-dot{transform:rotate(-8deg) scale(1.08)}
 .ab-row{display:grid;grid-template-columns:80px 1fr 1.2fr;gap:32px;align-items:center;padding:36px 0;border-bottom:1px solid rgba(26,20,16,.1)}
 .ab-row .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:56px;line-height:1;color:rgba(26,20,16,.12);transition:color .4s,transform .4s}
 .ab-row:hover .num{color:#EB7A34;transform:translateX(6px)}
