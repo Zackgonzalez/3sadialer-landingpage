@@ -15,272 +15,26 @@
 <meta property="og:locale" content="da_DK">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
-<style>
-html{scroll-behavior:smooth}body{margin:0;background:#FFEEDB}[hidden]{display:none !important}
-a{color:#B4501A}a:hover{color:#8A3A10}
-.lp *{box-sizing:border-box}
-.disp{font-family:'Bricolage Grotesque',system-ui,sans-serif;letter-spacing:-0.035em}
-.mono{font-family:'Geist Mono',ui-monospace,monospace}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes pulseRing{0%{box-shadow:0 0 0 0 rgba(235,122,52,.45)}100%{box-shadow:0 0 0 18px rgba(235,122,52,0)}}
-@keyframes wave{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes strike{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes toastIn{0%{opacity:0;transform:translateY(12px) scale(.96)}12%,88%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-8px)}}
-@keyframes flow{from{background-position:0 0}to{background-position:-200px 0}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.in1{animation:fadeUp .8s cubic-bezier(.2,.7,.2,1) both}
-.in2{animation:fadeUp .8s .12s cubic-bezier(.2,.7,.2,1) both}
-.in3{animation:fadeUp .8s .24s cubic-bezier(.2,.7,.2,1) both}
-.in4{animation:fadeUp .8s .36s cubic-bezier(.2,.7,.2,1) both}
-.float1{animation:floaty 6s ease-in-out infinite}
-.float2{animation:floaty 7s 1s ease-in-out infinite}
-.float3{animation:floaty 8s .5s ease-in-out infinite}
-.live{animation:pulseRing 1.6s ease-out infinite}
-.bar{display:inline-block;width:4px;border-radius:4px;background:#EB7A34;height:28px;transform-origin:center;animation:wave 1s ease-in-out infinite}
-.track{display:flex;gap:56px;width:max-content;animation:marquee 40s linear infinite}
-.strike{position:relative}
-.strike::after{content:"";position:absolute;left:-4px;right:-4px;top:52%;height:2px;background:#C2410C;transform-origin:left;animation:strike 1s 1s both}
-.toast{animation:toastIn 4.5s ease-in-out infinite both}
-.flowline{background:repeating-linear-gradient(90deg,#EB7A34 0 10px,transparent 10px 20px);background-size:200px 2px;animation:flow 6s linear infinite}
-.dot{animation:blink 1.4s ease-in-out infinite}
-.chip{padding:6px 12px;border-radius:999px;font-size:13px;font-weight:500;border:1px solid #EADFD3;color:#6B5E54;background:#FFFFFF;transition:all .35s}
-.chip.on{background:#1A1410;color:#FFFFFF;border-color:#1A1410;transform:scale(1.06)}
-.card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
-.card:hover{transform:translateY(-6px);box-shadow:0 24px 48px -24px rgba(26,20,16,.28)}
-.btn{transition:transform .2s,box-shadow .2s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -10px rgba(26,20,16,.35)}
-.seg{border:0;cursor:pointer;padding:12px 22px;border-radius:999px;font:500 15px 'Geist',sans-serif;background:transparent;color:#6B5E54;min-height:44px;transition:all .3s}
-.seg.on{background:#1A1410;color:#FFFFFF}
-.plan{background:rgba(255,255,255,.62);border:1px solid rgba(234,223,211,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.plan.featured{background:#1A1410;color:#FBF7F2;border-color:#1A1410;transform:translateY(-12px)}
-.plan.featured .pmuted{color:#C9BBAE}
-.plan.featured .pcta{background:#EB7A34;color:#1A1410}
-input[type=range]{width:100%;accent-color:#EB7A34;height:28px}
-.faqbtn{width:100%;background:none;border:0;cursor:pointer;text-align:left;padding:24px 0;display:flex;justify-content:space-between;align-items:center;gap:16px;font:600 18px 'Geist',sans-serif;color:#1A1410;min-height:44px}
-/* ---- levende baggrund ---- */
-#bg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:linear-gradient(180deg,#FFEFDD 0%,#FFE4C8 50%,#FFEEDB 100%)}
-#shader{position:absolute;inset:0;width:100%;height:100%;display:none}#bg.gl #shader{display:block}#bg.gl .blob:not(.cursor){display:none}
-#bg .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.75;will-change:transform}
-#bg .b1{width:62vw;height:62vw;left:-18vw;top:-22vw;background:radial-gradient(circle at 40% 40%,#FDB46E,rgba(253,180,110,0) 70%);animation:drift1 26s ease-in-out infinite alternate}
-#bg .b2{width:52vw;height:52vw;right:-14vw;top:8vh;background:radial-gradient(circle at 50% 50%,#FFC98A,rgba(255,201,138,0) 70%);animation:drift2 32s ease-in-out infinite alternate}
-#bg .b3{width:48vw;height:48vw;left:22vw;bottom:-20vw;background:radial-gradient(circle at 50% 50%,#FFD99A,rgba(255,217,154,0) 70%);animation:drift3 28s ease-in-out infinite alternate}
-#bg .b4{width:34vw;height:34vw;right:10vw;bottom:6vh;background:radial-gradient(circle at 50% 50%,#F28A2E,rgba(242,138,46,0) 70%);opacity:.45;animation:drift4 22s ease-in-out infinite alternate}
-#bg .b5{width:30vw;height:30vw;left:6vw;top:40vh;background:radial-gradient(circle at 50% 50%,#F8A55A,rgba(248,165,90,0) 70%);opacity:.4;animation:drift2 36s ease-in-out infinite alternate-reverse}
-#bg .cursor{width:520px;height:520px;left:0;top:0;margin:-260px 0 0 -260px;background:radial-gradient(circle,rgba(242,138,46,.24),rgba(242,138,46,0) 65%);filter:blur(30px);opacity:0;transition:opacity .6s}
-#bg.has-cursor .cursor{opacity:1}
-#bg .grain{position:absolute;inset:-50%;opacity:.09;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1  0 0 0 0 .08  0 0 0 0 .06  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");animation:grain 1.2s steps(6) infinite}
-@keyframes drift1{0%{transform:translate(0,0) scale(1)}50%{transform:translate(12vw,8vh) scale(1.15)}100%{transform:translate(4vw,18vh) scale(.95)}}
-@keyframes drift2{0%{transform:translate(0,0) scale(1)}50%{transform:translate(-10vw,14vh) scale(1.1)}100%{transform:translate(-4vw,-6vh) scale(1.2)}}
-@keyframes drift3{0%{transform:translate(0,0) scale(1.05)}50%{transform:translate(-14vw,-10vh) scale(.9)}100%{transform:translate(10vw,-4vh) scale(1.15)}}
-@keyframes drift4{0%{transform:translate(0,0)}100%{transform:translate(-18vw,-22vh) scale(1.3)}}
-@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
-@keyframes spin{to{transform:rotate(360deg)}}
-.lp{position:relative;z-index:1}
-.glow{position:absolute;left:50%;top:52%;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;background:conic-gradient(from 0deg,#EB7A34,#FDB46E,#FFD08A,#F59A3E,#EB7A34);filter:blur(70px);opacity:.45;animation:spin 18s linear infinite;pointer-events:none;z-index:0}
-.glass{backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%)}
-.plan.featured{box-shadow:0 0 0 1px rgba(235,122,52,.5),0 40px 80px -30px rgba(235,122,52,.55)}
-/* ---- eksklusive effekter ---- */
-#loader{position:fixed;inset:0;z-index:1000;background:#1A1410;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:transform .9s cubic-bezier(.76,0,.24,1);color:#FBF7F2}
-#loader.done{transform:translateY(-100%)}
-#loader .llogo{position:relative;width:min(44vw,220px);aspect-ratio:1252/740;animation:lpop .9s cubic-bezier(.2,.7,.2,1) both;filter:drop-shadow(0 10px 30px rgba(235,122,52,.45))}#loader .llogo img{width:100%;height:100%;object-fit:contain;display:block;-webkit-mask:linear-gradient(90deg,#000 0 50%,transparent 50%) 0 0/200% 100% no-repeat;mask:linear-gradient(90deg,#000 0 50%,transparent 50%) 0 0/200% 100% no-repeat;animation:lwipe 1s .15s cubic-bezier(.6,0,.2,1) both}#loader .lsweep{position:absolute;inset:0;-webkit-mask:url("/logo.png") center/contain no-repeat;mask:url("/logo.png") center/contain no-repeat;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.85) 50%,transparent 65%);background-size:250% 100%;animation:lgshine 1.4s .9s ease-in-out both;mix-blend-mode:screen}@keyframes lgshine{0%{background-position:120% 0}100%{background-position:-140% 0}}@keyframes lpop{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}@keyframes lwipe{from{-webkit-mask-position:100% 0;mask-position:100% 0}to{-webkit-mask-position:0 0;mask-position:0 0}}
-#loader .lw{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(32px,5vw,64px);letter-spacing:-.04em;overflow:hidden;line-height:1.1}
-#loader .lw span{display:inline-block;transform:translateY(110%);animation:lineIn .9s .1s cubic-bezier(.2,.7,.2,1) forwards}
-#loader .lbar{width:160px;height:2px;background:#3A2C22;overflow:hidden;border-radius:2px}
-#loader .lbar i{display:block;height:100%;width:100%;background:#EB7A34;transform:scaleX(0);transform-origin:left;animation:fill 1.1s .2s cubic-bezier(.6,0,.2,1) forwards}
-@keyframes lineIn{to{transform:none}}
-@keyframes fill{to{transform:scaleX(1)}}
-.line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
-.line>span{display:inline-block;transform:translateY(115%) rotate(4deg);animation:lineIn 1s cubic-bezier(.2,.7,.2,1) forwards}
-.line:nth-child(2)>span{animation-delay:.1s}.line:nth-child(3)>span{animation-delay:.2s}
-.in1,.in2,.in3,.in4{animation-delay:1.4s}.in2{animation-delay:1.5s}.in3{animation-delay:1.6s}.in4{animation-delay:1.75s}
-.line>span{animation-delay:1.45s}.line:nth-child(2)>span{animation-delay:1.55s}.line:nth-child(3)>span{animation-delay:1.65s}
-.shine{background:linear-gradient(110deg,#C2531A 0%,#EB7A34 35%,#FFD08A 50%,#EB7A34 65%,#C2531A 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent !important;animation:shine 5s linear infinite}
-@keyframes shine{to{background-position:-220% 0}}
-.btn{position:relative;overflow:hidden;isolation:isolate}
-.btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .7s cubic-bezier(.2,.7,.2,1);pointer-events:none}
-.btn:hover::after{left:130%}
-.ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.45);transform:scale(0);animation:rip .7s ease-out forwards;pointer-events:none}
-@keyframes rip{to{transform:scale(4);opacity:0}}
-@property --ang{syntax:'<angle>';initial-value:0deg;inherits:false}
-.plan.featured{position:relative}
-.plan.featured::before{content:"";position:absolute;inset:-2px;border-radius:30px;padding:2px;background:conic-gradient(from var(--ang),transparent 0 70%,#EB7A34 82%,#FFD08A 90%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:beam 4s linear infinite;pointer-events:none}
-@keyframes beam{to{--ang:360deg}}
-.reveal.is-in.tilting{transition:transform .15s ease-out,box-shadow .35s}
-.orbit{position:absolute;left:50%;top:52%;width:640px;height:640px;margin:-320px 0 0 -320px;border-radius:50%;border:1px dashed rgba(194,83,26,.25);animation:spin 40s linear infinite;pointer-events:none;z-index:1}
-.orbit .o{position:absolute;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:14px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);border:1px solid #EADFD3;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px -12px rgba(26,20,16,.35);animation:spin 40s linear infinite reverse}
-.orbit .o1{left:50%;top:0}.orbit .o2{left:100%;top:50%}.orbit .o3{left:50%;top:100%}.orbit .o4{left:0;top:50%}
-.cue{position:absolute;left:50%;bottom:-20px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;color:#8C7B6E;animation:fadeUp 1s 2.2s both}
-.cue i{width:1px;height:48px;background:linear-gradient(#EB7A34,transparent);display:block;transform-origin:top;animation:cue 1.8s ease-in-out infinite}
-@keyframes cue{0%{transform:scaleY(0);opacity:0}40%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1) translateY(20px);opacity:0}}
-section{transition:opacity .2s linear}
-#marq:hover .track{animation-play-state:paused}
-a,button,.card,.btn,input[type=range]{cursor:pointer}
-@media (max-width:760px){.orbit{display:none}}
-/* ---- header ---- */
-html{scroll-padding-top:110px}
-.hd,.mm{font-family:'Geist',system-ui,sans-serif}
-.hd{position:fixed;top:16px;left:0;right:0;z-index:900;display:flex;justify-content:center;padding:0 16px;pointer-events:none;transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .4s}
-.hd.hide{transform:translateY(-130%)}
-.hd-bar{pointer-events:auto;width:100%;max-width:1240px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px 10px 18px;border-radius:999px;background:transparent;border:1px solid transparent;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;transition:max-width .6s cubic-bezier(.2,.7,.2,1),background .4s,box-shadow .4s,padding .4s,border-color .4s;animation:hdIn 1s 1.5s cubic-bezier(.2,.7,.2,1) both}
-@keyframes hdIn{from{opacity:0;transform:translateY(-24px) scale(.96)}to{opacity:1;transform:none}}
-.hd.scrolled .hd-bar{max-width:1080px;background:rgba(255,250,244,.8);border-color:rgba(255,255,255,.7);backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%);box-shadow:0 1px 0 rgba(255,255,255,.7) inset,0 20px 50px -24px rgba(26,20,16,.35);padding:8px 10px 8px 16px}
-.hd-logo{display:flex;align-items:center;min-height:44px}
-.hd-logo img{height:40px;width:auto;display:block;transition:height .4s cubic-bezier(.2,.7,.2,1),transform .4s}
-.hd.scrolled .hd-logo img{height:34px}
-.hd-logo:hover img{transform:scale(1.05) rotate(-2deg)}
-.hd-nav{position:relative;display:flex;align-items:center;gap:2px;padding:4px;border-radius:999px}
-.hd-nav a{position:relative;z-index:1;padding:10px 16px;border-radius:999px;font-size:15px;font-weight:500;letter-spacing:-.01em;color:#5A4D43;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;transition:color .25s}
-.hd-nav a:hover,.hd-nav a.active{color:#1A1410}
-.hd-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);width:0;border-radius:999px;background:rgba(26,20,16,.07);opacity:0;transition:left .35s cubic-bezier(.2,.7,.2,1),width .35s cubic-bezier(.2,.7,.2,1),opacity .25s}
-.hd-nav.has-pill .hd-pill{opacity:1}
-.hd-nav a .dot{position:absolute;left:50%;bottom:4px;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:#EB7A34;transform:scale(0);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
-.hd-nav a.active .dot{transform:scale(1)}
-.hd-acts{display:flex;align-items:center;gap:8px}
-.hd-login{padding:10px 16px;border-radius:999px;font-size:15px;font-weight:500;color:#1A1410;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;transition:background .25s}
-.hd-login:hover{background:rgba(26,20,16,.06)}
-.hd-cta{position:relative;overflow:hidden;padding:12px 20px;border-radius:999px;background:#1A1410;color:#FBF7F2;font-size:15px;font-weight:600;text-decoration:none;min-height:44px;display:inline-flex;align-items:center;gap:8px;transition:transform .25s,box-shadow .25s,background .3s}
-.hd-cta:hover{transform:translateY(-2px);background:#EB7A34;color:#1A1410;box-shadow:0 14px 28px -12px rgba(235,122,52,.7)}
-.hd-cta svg{transition:transform .3s}.hd-cta:hover svg{transform:translateX(4px)}
-.hd-burger{display:none;width:44px;height:44px;border-radius:50%;border:0;background:#1A1410;cursor:pointer;position:relative;flex:none;transition:transform .3s,background .3s}
-.hd-burger span{position:absolute;left:12px;width:20px;height:2px;border-radius:2px;background:#FBF7F2;transition:transform .45s cubic-bezier(.2,.7,.2,1),top .45s cubic-bezier(.2,.7,.2,1),width .3s,opacity .3s}
-.hd-burger span:nth-child(1){top:16px}.hd-burger span:nth-child(2){top:21px;width:14px}.hd-burger span:nth-child(3){top:26px}
-.hd-burger:hover span:nth-child(2){width:20px}
-body.menu-open .hd-burger{background:#EB7A34;transform:rotate(90deg)}
-body.menu-open .hd-burger span{background:#1A1410}
-body.menu-open .hd-burger span:nth-child(1){top:21px;transform:rotate(45deg)}
-body.menu-open .hd-burger span:nth-child(2){opacity:0;transform:scaleX(0)}
-body.menu-open .hd-burger span:nth-child(3){top:21px;transform:rotate(-45deg)}
-/* mobil-menu */
-.mm{position:fixed;inset:0;z-index:890;background:#17110D;color:#FBF7F2;clip-path:circle(0px at calc(100% - 44px) 44px);transition:clip-path .8s cubic-bezier(.76,0,.24,1);pointer-events:none;overflow:hidden;display:flex;flex-direction:column;padding:112px 28px 32px}
-body.menu-open .mm{clip-path:circle(160vmax at calc(100% - 44px) 44px);pointer-events:auto}
-.mm-glow{position:absolute;right:-30%;top:-20%;width:90vw;height:90vw;border-radius:50%;background:radial-gradient(circle,rgba(235,122,52,.45),rgba(235,122,52,0) 60%);filter:blur(30px);pointer-events:none;animation:ftpulse 6s ease-in-out infinite alternate}
-.mm-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(251,247,242,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(251,247,242,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 90% 80% at 100% 0%,#000,transparent);mask-image:radial-gradient(ellipse 90% 80% at 100% 0%,#000,transparent);pointer-events:none}
-.mm-label{position:relative;font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.14em;color:#EB7A34;margin-bottom:20px;opacity:0;transform:translateY(12px);transition:opacity .5s .35s,transform .5s .35s}
-.mm-nav{position:relative;list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
-.mm-nav li{overflow:hidden;border-bottom:1px solid rgba(251,247,242,.08)}
-.mm-nav a{display:flex;align-items:baseline;gap:16px;padding:18px 0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(34px,9vw,52px);letter-spacing:-.03em;line-height:1;color:#FBF7F2;text-decoration:none;transform:translateY(110%) rotate(3deg);transition:transform .7s cubic-bezier(.2,.7,.2,1),color .3s}
-.mm-nav a:active,.mm-nav a:hover{color:#EB7A34}
-.mm-nav a i{font-family:'Geist Mono',monospace;font-style:normal;font-weight:400;font-size:13px;color:#8C7B6E;letter-spacing:.1em}
-.mm-nav a .arr{margin-left:auto;align-self:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(251,247,242,.18);display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s,transform .3s}
-.mm-nav a:hover .arr,.mm-nav a:active .arr{background:#EB7A34;border-color:#EB7A34;color:#1A1410;transform:rotate(-45deg)}
-body.menu-open .mm-label{opacity:1;transform:none}
-body.menu-open .mm-nav a{transform:none}
-body.menu-open .mm-nav li:nth-child(1) a{transition-delay:.35s}body.menu-open .mm-nav li:nth-child(2) a{transition-delay:.42s}body.menu-open .mm-nav li:nth-child(3) a{transition-delay:.49s}body.menu-open .mm-nav li:nth-child(4) a{transition-delay:.56s}body.menu-open .mm-nav li:nth-child(5) a{transition-delay:.63s}
-.mm-foot{position:relative;margin-top:auto;display:flex;flex-direction:column;gap:14px;opacity:0;transform:translateY(20px);transition:opacity .6s .7s,transform .6s .7s}
-body.menu-open .mm-foot{opacity:1;transform:none}
-.mm-foot .mm-cta{display:flex;align-items:center;justify-content:center;gap:10px;padding:18px;border-radius:999px;background:#EB7A34;color:#1A1410;font-weight:600;font-size:17px;text-decoration:none;min-height:56px}
-.mm-foot .mm-login{display:flex;align-items:center;justify-content:center;padding:16px;border-radius:999px;border:1px solid rgba(251,247,242,.2);color:#FBF7F2;font-weight:500;font-size:16px;text-decoration:none;min-height:52px}
-.mm-foot .mm-meta{display:flex;justify-content:space-between;font-size:12px;color:#8C7B6E;font-family:'Geist Mono',monospace;letter-spacing:.08em;padding-top:6px}
-.mm-foot .mm-meta b{color:#1F9D5C;font-weight:400}
-body.menu-open{overflow:hidden}
-@media (max-width:900px){.hd-nav,.hd-login{display:none}.hd-burger{display:block}.hd{top:12px;padding:0 12px}.hd-bar{padding:8px 8px 8px 14px}.hd-logo img{height:34px}.hd.scrolled .hd-logo img{height:30px}.hd-cta{padding:11px 16px;font-size:14px}}
-@media (max-width:420px){.hd-cta{display:none}}
-/* ---- footer ---- */
-.ft{position:relative;background:#17110D;color:#FBF7F2;border-radius:48px 48px 0 0;padding:96px 24px 0;overflow:hidden;font-family:'Geist',system-ui,sans-serif;isolation:isolate}
-.ft *{box-sizing:border-box}
-.ft a{color:inherit;text-decoration:none}
-.ft .ft-glow{position:absolute;left:50%;bottom:-320px;width:900px;height:900px;margin-left:-450px;border-radius:50%;background:radial-gradient(circle,rgba(235,122,52,.35),rgba(235,122,52,0) 60%);filter:blur(40px);pointer-events:none;z-index:-1;animation:ftpulse 7s ease-in-out infinite alternate}
-@keyframes ftpulse{from{transform:scale(.9);opacity:.7}to{transform:scale(1.15);opacity:1}}
-.ft .ft-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(251,247,242,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(251,247,242,.04) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 100%,#000,transparent);mask-image:radial-gradient(ellipse 80% 70% at 50% 100%,#000,transparent);pointer-events:none;z-index:-1}
-.ft-wrap{max-width:1240px;margin:0 auto}
-.ft-top{display:flex;flex-wrap:wrap;gap:40px 64px;justify-content:space-between;align-items:flex-start}
-.ft-brand{flex:1 1 320px;max-width:420px;display:flex;flex-direction:column;gap:20px}
-.ft-logo{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:28px;letter-spacing:-.03em;display:flex;align-items:center;gap:10px}
-.ft-logo i{width:36px;height:36px;border-radius:11px;background:#EB7A34;display:flex;align-items:center;justify-content:center}
-.ft-brand p{margin:0;color:#C9BBAE;font-size:16px;line-height:1.6}
-.ft-status{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;padding:8px 14px 8px 10px;border-radius:999px;border:1px solid #33271E;background:#221912;font-size:13px;color:#C9BBAE}
-.ft-status b{width:8px;height:8px;border-radius:50%;background:#1F9D5C;box-shadow:0 0 0 0 rgba(31,157,92,.6);animation:ftping 1.8s ease-out infinite}
-@keyframes ftping{to{box-shadow:0 0 0 10px rgba(31,157,92,0)}}
-.ft-cols{display:grid;grid-template-columns:repeat(3,minmax(140px,1fr));gap:32px 48px;flex:1 1 460px}
-.ft-col h4{margin:0 0 18px;font-size:12px;letter-spacing:.14em;font-family:'Geist Mono',monospace;font-weight:500;color:#EB7A34}
-.ft-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;font-size:15px}
-.ft-col a{position:relative;display:inline-block;color:#E5DACF;transition:color .25s,transform .25s}
-.ft-col a::after{content:"";position:absolute;left:0;bottom:-3px;width:100%;height:1px;background:#EB7A34;transform:scaleX(0);transform-origin:right;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
-.ft-col a:hover{color:#FFFFFF;transform:translateX(4px)}
-.ft-col a:hover::after{transform:scaleX(1);transform-origin:left}
-.ft-cta{margin-top:72px;border-radius:28px;background:#221912;border:1px solid #33271E;padding:32px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
-.ft-cta::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(235,122,52,.12) 50%,transparent 70%);background-size:300% 100%;animation:ftsweep 6s linear infinite;pointer-events:none}
-@keyframes ftsweep{to{background-position:-300% 0}}
-.ft-cta h3{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;line-height:1.05}
-.ft-cta p{margin:6px 0 0;color:#C9BBAE;font-size:15px}
-.ft-form{display:flex;gap:8px;flex-wrap:wrap;position:relative}
-.ft-form input{flex:1 1 240px;min-height:52px;padding:0 18px;border-radius:999px;border:1px solid #3A2C22;background:#17110D;color:#FBF7F2;font:15px 'Geist',sans-serif;outline:none;transition:border-color .25s,box-shadow .25s}
-.ft-form input:focus{border-color:#EB7A34;box-shadow:0 0 0 4px rgba(235,122,52,.2)}
-.ft-form input::placeholder{color:#8C7B6E}
-.ft-form button{min-height:52px;padding:0 24px;border-radius:999px;border:0;background:#EB7A34;color:#1A1410;font:600 15px 'Geist',sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s}
-.ft-form button:hover{transform:translateY(-2px);box-shadow:0 12px 24px -10px rgba(235,122,52,.7)}
-.ft-bottom{margin-top:56px;padding:28px 0 32px;border-top:1px solid #2A1F18;display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between;font-size:13px;color:#8C7B6E}
-.ft-bottom nav{display:flex;flex-wrap:wrap;gap:20px}
-.ft-bottom nav a{color:#C9BBAE;transition:color .2s}.ft-bottom nav a:hover{color:#FFFFFF}
-.ft-social{display:flex;gap:8px}
-.ft-social a{width:44px;height:44px;border-radius:50%;border:1px solid #33271E;display:flex;align-items:center;justify-content:center;color:#C9BBAE;transition:all .3s cubic-bezier(.2,.7,.2,1)}
-.ft-social a:hover{background:#EB7A34;border-color:#EB7A34;color:#1A1410;transform:translateY(-3px) rotate(-6deg)}
-.ft-big{position:relative;display:block;width:min(64vw,820px);aspect-ratio:1252/740;margin:48px auto -3%;-webkit-mask:url("/logo.png") center/contain no-repeat;mask:url("/logo.png") center/contain no-repeat;display:grid;grid-template-columns:repeat(36,1fr);grid-template-rows:repeat(21,1fr);gap:2px;filter:drop-shadow(0 24px 50px rgba(235,122,52,.35))}
-.ft-big i{display:block;background:#EB7A34;border-radius:2px;transform:scale(0);opacity:0;transition:transform .6s cubic-bezier(.3,1.5,.5,1),opacity .4s;animation:tile 6s ease-in-out infinite;animation-play-state:paused}
-.ft-big.is-in i{transform:none;opacity:1;animation-play-state:running}
-@keyframes tile{0%,100%{background:#EB7A34}50%{background:#FFC27A}}
-.ft-big i.hot{background:#FFE3B8 !important;transition:background .1s}
-.ft-halo{position:absolute;left:50%;bottom:0;width:60%;height:40%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(235,122,52,.45),transparent 65%);filter:blur(50px);animation:ftpulse 4s ease-in-out infinite alternate;pointer-events:none}
-.ft-bigwrap{position:relative}
-.ft-top-btn{position:absolute;right:24px;bottom:120px;width:52px;height:52px;border-radius:50%;background:#EB7A34;color:#1A1410;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .25s,box-shadow .25s}
-.ft-top-btn:hover{transform:translateY(-4px);box-shadow:0 16px 30px -12px rgba(235,122,52,.8)}
-@media (max-width:760px){.ft{border-radius:32px 32px 0 0;padding-top:64px}.ft-cols{grid-template-columns:repeat(2,minmax(0,1fr))}.ft-top-btn{bottom:auto;top:24px}}
-/* ---- scroll-effekter ---- */
-#progress{position:fixed;top:0;left:0;height:3px;width:100%;background:#EB7A34;transform-origin:left;transform:scaleX(0);z-index:999}
-.reveal{opacity:0;transform:translateY(48px);filter:blur(0);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1),filter 1s cubic-bezier(.2,.7,.2,1),box-shadow .35s}
-.reveal.r-left{transform:translateX(-80px) rotate(-1.5deg)}
-.reveal.r-right{transform:translateX(80px) rotate(1.5deg)}
-.reveal.r-scale{transform:scale(.9);filter:blur(6px)}
-.reveal.r-blur{transform:translateY(20px);filter:blur(16px)}
-.reveal.is-in{opacity:1;transform:none;filter:none}
-.card.is-in:hover{transform:translateY(-8px)}
-.plan.featured.is-in{transform:translateY(-12px)}
-.plan.featured.is-in:hover{transform:translateY(-20px)}
-.split .w{display:inline-block;opacity:0;transform:translateY(70%) rotate(6deg);filter:blur(6px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1),filter .8s}
-.split.is-in .w{opacity:1;transform:none;filter:none}
-.flowline{transform:scaleX(0);transform-origin:left;transition:transform 1.8s cubic-bezier(.6,0,.2,1)}
-.flowline.is-in{transform:scaleX(1)}
-.growbar{transform:scaleY(0);transform-origin:bottom;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
-.is-in .growbar{transform:scaleY(1)}
-.is-in .growbar:nth-child(2){transition-delay:.12s}.is-in .growbar:nth-child(3){transition-delay:.24s}.is-in .growbar:nth-child(4){transition-delay:.36s}.is-in .growbar:nth-child(5){transition-delay:.48s}
-.pop{transform:scale(0) rotate(-45deg);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
-.is-in .pop{transform:none}
-.is-in .pop:nth-child(2){transition-delay:.15s}.is-in .pop:nth-child(3){transition-delay:.3s}.is-in .pop:nth-child(4){transition-delay:.45s}.is-in .pop:nth-child(5){transition-delay:.6s}
-.strike::after{animation:none !important;transform:scaleX(0);transition:transform .7s cubic-bezier(.6,0,.2,1)}
-.is-in .strike::after{transform:scaleX(1)}
-.is-in li:nth-child(1) .strike::after{transition-delay:.5s}.is-in li:nth-child(2) .strike::after{transition-delay:.8s}.is-in li:nth-child(3) .strike::after{transition-delay:1.1s}.is-in li:nth-child(4) .strike::after{transition-delay:1.4s}.is-in li:nth-child(5) .strike::after{transition-delay:1.7s}
-.reveal li{opacity:0;transform:translateX(-16px);transition:opacity .6s,transform .6s}
-.reveal.is-in li{opacity:1;transform:none}
-.reveal.is-in li:nth-child(2){transition-delay:.08s}.reveal.is-in li:nth-child(3){transition-delay:.16s}.reveal.is-in li:nth-child(4){transition-delay:.24s}.reveal.is-in li:nth-child(5){transition-delay:.32s}.reveal.is-in li:nth-child(6){transition-delay:.4s}
-.spot{position:relative;overflow:hidden}
-.spot::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(235,122,52,.16),transparent 45%);opacity:0;transition:opacity .4s;pointer-events:none}
-.spot:hover::before{opacity:1}
-[data-parallax]{translate:0 var(--py,0px)}
-#tilt{transition:transform .25s ease-out;transform-style:preserve-3d}
-.magnet{transition:translate .2s ease-out}
-@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}.reveal,.split .w,.reveal li,.line>span{opacity:1 !important;transform:none !important;filter:none !important}#loader{display:none}.growbar,.pop,.flowline{transform:none !important}}
-@media (max-width:760px){.plan.featured{transform:none}}
-</style>
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 <div id="loader" aria-hidden="true"><div class="llogo"><img src="/logo.png" alt=""><span class="lsweep"></span></div><div class="lbar"><i></i></div></div>
 <div id="progress" aria-hidden="true"></div>
 <header class="hd" id="hd">
 <div class="hd-bar">
-<a class="hd-logo" href="#top" aria-label="3SA Dialer – forside"><img src="/logo.png" alt="3SA Dialer"></a>
+<a class="hd-logo" href="/" aria-label="3SA Dialer – forside"><img src="/logo.png" alt="3SA Dialer"></a>
 <nav class="hd-nav" id="hdnav" aria-label="Primær">
 <span class="hd-pill" aria-hidden="true"></span>
-<a href="#funktioner" data-sec="funktioner">Funktioner<span class="dot"></span></a>
-<a href="#saadan" data-sec="saadan">Sådan virker det<span class="dot"></span></a>
-<a href="#priser" data-sec="priser">Priser<span class="dot"></span></a>
-<a href="#aura" data-sec="aura">Aura AI<span class="dot"></span></a>
-<a href="#faq" data-sec="faq">FAQ<span class="dot"></span></a>
+<a href="/#rundvisning" data-sec="rundvisning">Rundvisning<span class="dot"></span></a>
+<a href="/#saadan" data-sec="saadan">Sådan virker det<span class="dot"></span></a>
+<a href="/#priser" data-sec="priser">Priser<span class="dot"></span></a>
+<a href="/#aura" data-sec="aura">Aura AI<span class="dot"></span></a>
+<a href="/#faq" data-sec="faq">FAQ<span class="dot"></span></a>
+<a href="/om-os" data-sec="om-os">Om os<span class="dot"></span></a>
 </nav>
 <div class="hd-acts">
 <a class="hd-login" href="https://app.3sadialer.io">Log ind</a>
-<a class="hd-cta" href="#priser">Prøv gratis<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="hd-cta" href="/#priser">Prøv gratis<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 <button class="hd-burger" id="burger" type="button" aria-label="Åbn menu" aria-expanded="false" aria-controls="mm"><span></span><span></span><span></span></button>
 </div>
 </div>
@@ -289,14 +43,15 @@ body.menu-open{overflow:hidden}
 <div class="mm-glow" aria-hidden="true"></div><div class="mm-grid" aria-hidden="true"></div>
 <div class="mm-label">MENU</div>
 <ul class="mm-nav">
-<li><a href="#funktioner"><i>01</i>Funktioner<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
-<li><a href="#saadan"><i>02</i>Sådan virker det<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
-<li><a href="#priser"><i>03</i>Priser<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
-<li><a href="#aura"><i>04</i>Aura AI<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
-<li><a href="#faq"><i>05</i>FAQ<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+<li><a href="/#rundvisning"><i>01</i>Rundvisning<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+<li><a href="/#saadan"><i>02</i>Sådan virker det<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+<li><a href="/#priser"><i>03</i>Priser<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+<li><a href="/#aura"><i>04</i>Aura AI<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+<li><a href="/#faq"><i>05</i>FAQ<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
+<li><a href="/om-os"><i>06</i>Om os<span class="arr"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></li>
 </ul>
 <div class="mm-foot">
-<a class="mm-cta" href="#priser">Prøv 14 dage gratis<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="mm-cta" href="/#priser">Prøv 14 dage gratis<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
 <a class="mm-login" href="https://app.3sadialer.io">Log ind</a>
 <div class="mm-meta"><span><b>●</b> ALLE SYSTEMER KØRER</span><span>EU-HOSTET</span></div>
 </div>
@@ -309,17 +64,16 @@ body.menu-open{overflow:hidden}
 <div style="position: absolute; inset: 0; background-image: radial-gradient(#E6D9CB 1px, transparent 1px); background-size: 28px 28px; opacity: .7; -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%); mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%); pointer-events: none" aria-hidden="true" data-parallax="0.25"></div>
 <div style="position: relative; max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
 
-<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 28px" data-parallax="-0.08">
-<div class="glass in1" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; padding: 8px 14px 8px 8px; border-radius: 999px; background: rgba(255,255,255,.62); border: 1px solid #EADFD3; font-size: 14px; color: #6B5E54">
+<div class="sec-copy" style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 28px" data-parallax="-0.08">
+<div class="glass in1" style="display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; padding: 8px 14px 8px 8px; border-radius: 999px; background: rgba(255,255,255,.7); border: 1px solid #EADFD3; font-size: 14px; color: #6B5E54">
 <span style="background: #FCE9DB; color: #8A3A10; font-weight: 600; padding: 4px 10px; border-radius: 999px; font-size: 12px">NYHED</span>
-<span>Aura AI coacher dine sælgere live under opkaldet</span>
+<span>Aura Stemme tager telefonen, når I ikke kan</span>
 </div>
-<h1 class="disp" style="margin: 0; font-size: clamp(44px, 6.4vw, 88px); line-height: .96; font-weight: 800"><span class="line"><span>Ring til flere.</span></span><span class="line"><span>Luk flere.</span></span><span class="line"><span class="shine" style="color: #C2531A">Drop Excel-arket.</span></span></h1>
-<p class="in3" style="margin: 0; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.55; color: #5A4D43; max-width: 540px">3SA Dialer samler opkald, statusser, opfølgninger, tilbud og kundeoverblik et sted. Alt det, du i dag gør manuelt mellem telefonen, mailen og regnearket — klaret mens du stadig har kunden i røret.</p>
+<h1 class="disp" style="margin: 0; font-size: clamp(44px, 6.4vw, 88px); line-height: .96; font-weight: 800"><span class="line"><span>Systemet vælger</span></span><span class="line"><span>næste kunde.</span></span><span class="line"><span class="shine" style="color: #C2531A">Du lukker salget.</span></span></h1>
+<p class="in3" style="margin: 0; font-size: clamp(18px, 1.6vw, 21px); line-height: 1.55; color: #5A4D43; max-width: 560px">3SA Dialer samler opkald, emner, tilbud, opfølgning, SMS, kalender og AI et sted. Dialeren ringer selv op til den rigtige kunde på det rigtige tidspunkt, og alt det, der normalt glider, kommer tilbage af sig selv. Flere samtaler i timen. Ingen glemte kunder. Fuldt overblik.</p>
 <div class="in4" style="display: flex; flex-wrap: wrap; gap: 12px">
-<a class="btn magnet" href="#priser" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 28px; border-radius: 999px; background: #EB7A34; color: #1A1410; font-weight: 600; font-size: 17px; text-decoration: none; min-height: 44px">Prøv 14 dage gratis
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-<a class="btn magnet" href="#beregner" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 28px; border-radius: 999px; background: rgba(255,255,255,.62); color: #1A1410; font-weight: 600; font-size: 17px; text-decoration: none; border: 1px solid #EADFD3; min-height: 44px">Beregn din tidsbesparelse</a>
+<a class="btn magnet" href="https://app.3sadialer.io" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 28px; border-radius: 999px; background: #EB7A34; color: #1A1410; font-weight: 600; font-size: 17px; text-decoration: none; min-height: 44px">Prøv 14 dage gratis <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<a class="btn magnet glass" href="#rundvisning" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 28px; border-radius: 999px; background: rgba(255,255,255,.7); color: #1A1410; font-weight: 600; font-size: 17px; text-decoration: none; border: 1px solid #EADFD3; min-height: 44px">Tag rundvisningen</a>
 </div>
 <div class="in4" style="display: flex; flex-wrap: wrap; gap: 20px; font-size: 14px; color: #6B5E54">
 <span style="display: inline-flex; align-items: center; gap: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Ingen kreditkort</span>
@@ -328,56 +82,97 @@ body.menu-open{overflow:hidden}
 </div>
 </div>
 
-<!-- Hero mockup -->
-<div id="tilt" style="flex: 1 1 460px; min-width: 0; position: relative; min-height: 560px">
+<!-- Hero: rundvisning i scener -->
+<div id="tilt" style="flex: 1 1 460px; min-width: 0; position: relative; min-height: 600px">
 <div class="glow" aria-hidden="true"></div>
-<div class="orbit" aria-hidden="true"><span class="o o1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></span><span class="o o2"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"></path><path d="M4 7l8 6 8-6"></path></svg></span><span class="o o3"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg></span><span class="o o4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg></span></div>
-<div class="glass in3" style="position: relative; margin: 40px auto 0; max-width: 470px; background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 28px; padding: 28px; box-shadow: 0 40px 80px -40px rgba(26,20,16,.35)">
-<div style="display: flex; justify-content: space-between; align-items: center">
-<span class="mono" style="font-size: 12px; color: #6B5E54; letter-spacing: .08em">KAMPAGNE · ENERGI B2B Q2</span>
-<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #1F7A4D; font-weight: 600"><span class="dot" style="width: 8px; height: 8px; border-radius: 50%; background: #1F9D5C"></span>Live</span>
+<div class="hs in3 glass" id="hscenes">
+<div class="hs-tabs" role="tablist" aria-label="Hvad systemet kan">
+<button class="on" type="button" data-scene="0">Dialer</button><button type="button" data-scene="1">Tilbud</button><button type="button" data-scene="2">Opfølgning</button><button type="button" data-scene="3">Aura AI</button><button type="button" data-scene="4">Nye kunder</button>
+<i class="hs-bar"></i>
 </div>
-<div style="display: flex; align-items: center; gap: 16px; margin-top: 24px">
-<div class="live" style="width: 60px; height: 60px; border-radius: 50%; background: #EB7A34; display: flex; align-items: center; justify-content: center; flex: none">
-<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1A1410" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+
+<!-- Scene 1: Dialer -->
+<div class="hs-scene on" data-scene="0">
+<div class="hs-head"><span class="mono">KAMPAGNE · ENERGI B2B Q2</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg> Auto-dial</span></div>
+<div class="hs-queue">
+<div><b>24</b><span>Ubehandlede</span></div><div><b>7</b><span>Kommende</span></div><div><b>3</b><span>Behandlede</span></div><div><b>5</b><span>Mine genopkald</span></div>
 </div>
-<div style="min-width: 0">
-<div style="font-weight: 600; font-size: 19px">Nordisk Tagdækning A/S</div>
-<div class="mono" style="font-size: 13px; color: #6B5E54; margin-top: 4px">+45 42 73 88 12 · <span class="js-timer">0:47</span></div>
+<div class="hs-call">
+<div class="hs-avatar live"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1410" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></div>
+<div><div class="hs-name">Nordisk Tagdækning A/S</div><div class="mono hs-sub">+45 42 73 88 12 · <span class="js-timer">0:47</span></div></div>
+<span class="hs-pill">Næste i køen</span>
 </div>
+<div class="hs-wave" aria-hidden="true"><span class="bar" style="animation-delay: 0.0s"></span><span class="bar" style="animation-delay: 0.137s"></span><span class="bar" style="animation-delay: 0.274s"></span><span class="bar" style="animation-delay: 0.411s"></span><span class="bar" style="animation-delay: 0.548s"></span><span class="bar" style="animation-delay: 0.685s"></span><span class="bar" style="animation-delay: 0.822s"></span><span class="bar" style="animation-delay: 0.059s"></span><span class="bar" style="animation-delay: 0.196s"></span><span class="bar" style="animation-delay: 0.333s"></span><span class="bar" style="animation-delay: 0.47s"></span><span class="bar" style="animation-delay: 0.607s"></span><span class="bar" style="animation-delay: 0.744s"></span><span class="bar" style="animation-delay: 0.881s"></span><span class="bar" style="animation-delay: 0.118s"></span><span class="bar" style="animation-delay: 0.255s"></span><span class="bar" style="animation-delay: 0.392s"></span><span class="bar" style="animation-delay: 0.529s"></span><span class="bar" style="animation-delay: 0.666s"></span><span class="bar" style="animation-delay: 0.803s"></span><span class="bar" style="animation-delay: 0.04s"></span><span class="bar" style="animation-delay: 0.177s"></span><span class="bar" style="animation-delay: 0.314s"></span><span class="bar" style="animation-delay: 0.451s"></span><span class="bar" style="animation-delay: 0.588s"></span><span class="bar" style="animation-delay: 0.725s"></span></div>
+<div class="hs-note"><div class="mono">NOTE · SKRIVES MENS DU TALER</div>Interesseret i Google Ads. Vil have tilbud på mail i dag.</div>
+<div class="hs-status"><span class="chip on" data-status>Succes</span><span class="chip" data-status>Genopkald</span><span class="chip" data-status>Telefonsvarer</span><span class="chip" data-status>Ikke interesseret</span></div>
+<div class="hs-foot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8C7B6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg> Emnet er låst til dig. Ingen kollega kan ringe til samme kunde nu.</div>
 </div>
-<div style="display: flex; align-items: center; gap: 4px; height: 40px; margin-top: 20px" aria-hidden="true">
-<span class="bar" style="animation-delay: 0.0s"></span><span class="bar" style="animation-delay: 0.137s"></span><span class="bar" style="animation-delay: 0.274s"></span><span class="bar" style="animation-delay: 0.411s"></span><span class="bar" style="animation-delay: 0.548s"></span><span class="bar" style="animation-delay: 0.685s"></span><span class="bar" style="animation-delay: 0.822s"></span><span class="bar" style="animation-delay: 0.059s"></span><span class="bar" style="animation-delay: 0.196s"></span><span class="bar" style="animation-delay: 0.333s"></span><span class="bar" style="animation-delay: 0.47s"></span><span class="bar" style="animation-delay: 0.607s"></span><span class="bar" style="animation-delay: 0.744s"></span><span class="bar" style="animation-delay: 0.881s"></span><span class="bar" style="animation-delay: 0.118s"></span><span class="bar" style="animation-delay: 0.255s"></span><span class="bar" style="animation-delay: 0.392s"></span><span class="bar" style="animation-delay: 0.529s"></span><span class="bar" style="animation-delay: 0.666s"></span><span class="bar" style="animation-delay: 0.803s"></span><span class="bar" style="animation-delay: 0.04s"></span><span class="bar" style="animation-delay: 0.177s"></span><span class="bar" style="animation-delay: 0.314s"></span><span class="bar" style="animation-delay: 0.451s"></span><span class="bar" style="animation-delay: 0.588s"></span><span class="bar" style="animation-delay: 0.725s"></span><span class="bar" style="animation-delay: 0.862s"></span><span class="bar" style="animation-delay: 0.099s"></span>
+
+<!-- Scene 2: Tilbud -->
+<div class="hs-scene" data-scene="1">
+<div class="hs-head"><span class="mono">TILBUD · GOOGLE ADS-PAKKE</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M4 7l8 6 8-6"></path></svg> Sendt fra emnet</span></div>
+<div class="hs-doc">
+<div class="hs-doc-top"><b>Tilbud til Nordisk Tagdækning A/S</b><span class="mono">#2026-0418</span></div>
+<p>Hej <em class="hl">Martin</em>, tak for snakken i dag. Som aftalt får I her et tilbud på <em class="hl">Google Ads · 5.000 kr./md.</em> til <em class="hl">Industrivej 12, 9000 Aalborg</em>. Noter fra samtalen: <em class="hl">opstart 1. november</em>.</p>
+<div class="hs-doc-tags"><span>Din skabelon</span><span>Dynamiske felter</span><span>Dine noter</span></div>
 </div>
-<div style="margin-top: 20px; padding: 16px; border-radius: 16px; background: #FBF7F2; font-size: 14px; line-height: 1.5; color: #5A4D43">
-<div class="mono" style="font-size: 11px; letter-spacing: .08em; color: #6B5E54; margin-bottom: 6px">NOTE · SKRIVES MENS DU TALER</div>
-Interesseret i Google Ads. Vil have tilbud på mail i dag. Genopkald torsdag kl. 10.
+<div class="hs-track">
+<div class="done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>Sendt 14:02</span></div>
+<div class="done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg><span>Åbnet 14:19</span></div>
+<div class="done pulse"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg><span>Åbnet igen 16:40 <b>· 2 gange</b></span></div>
 </div>
-<div style="margin-top: 20px">
-<div class="mono" style="font-size: 11px; letter-spacing: .08em; color: #6B5E54; margin-bottom: 10px">STATUS · ET KLIK</div>
-<div style="display: flex; flex-wrap: wrap; gap: 8px">
-<span class="chip on" data-status>Ubehandlet</span><span class="chip" data-status>Genopkald</span><span class="chip" data-status>Tilbud sendt</span><span class="chip" data-status>Succes</span>
+<div class="hs-foot" style="color: #B4501A"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B4501A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5 3.6 1.9 6.4L12 16.3 7.1 20 9 13.6 4 10l6.1-1.2z"></path></svg> Kunden kigger på tilbuddet nu. Godt tidspunkt at ringe.</div>
 </div>
+
+<!-- Scene 3: Tilbudskampagne -->
+<div class="hs-scene" data-scene="2">
+<div class="hs-head"><span class="mono">TILBUDSKAMPAGNE · AUTOMATISK</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg> Opfølgning kører</span></div>
+<div class="hs-flow">
+<div class="step done"><i>1</i><div><b>Tilbud sendt</b><span>Kunden lander automatisk i tilbudskampagnen</span></div></div>
+<div class="step done"><i>2</i><div><b>Opfølgning 1 · dag 2</b><span>Mail sendt og gemt på emnet</span></div></div>
+<div class="step now"><i>3</i><div><b>Genopkald · i dag 10:00</b><span>Dukker op i din dialer af sig selv</span></div></div>
+<div class="step"><i>4</i><div><b>Opfølgning 2 · dag 7</b><span>Til op til 25 kunder på en gang</span></div></div>
+</div>
+<div class="hs-foot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8C7B6E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg> Kun du kan se dette emne. Ingen kollega kan tage din kunde.</div>
+</div>
+
+<!-- Scene 4: Aura -->
+<div class="hs-scene" data-scene="3">
+<div class="hs-head"><span class="mono">AURA STEMME · INDGÅENDE 16:52</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"></path></svg> Uden for åbningstid</span></div>
+<div class="hs-chat">
+<div class="b in">Hej, I ringede til mig tidligere om Google Ads. Hvad koster det egentlig?</div>
+<div class="b out"><b>Aura</b>Hej Martin! Google Ads-pakken starter ved 5.000 kr./md. uden binding. Skal jeg få Zack til at ringe dig op i morgen formiddag?</div>
+<div class="b in">Ja tak, gerne omkring kl. 10.</div>
+<div class="b sys"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg> Genopkald oprettet · i morgen 10:00 · udskrift gemt på emnet</div>
+</div>
+<div class="hs-coach"><b>AI-coach under opkald:</b> <span id="tip">Kunden nævnte budget. Spørg til tidshorisont.</span></div>
+</div>
+
+<!-- Scene 5: Nye kunder -->
+<div class="hs-scene" data-scene="4">
+<div class="hs-head"><span class="mono">B2B LEAD SCRAPER · APOLLO</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg> Gratis at søge</span></div>
+<div class="hs-filters"><span>Stilling: Indehaver</span><span>Branche: Håndværk</span><span>Område: Nordjylland</span><span>Størrelse: 5–50</span></div>
+<div class="hs-leads">
+<div class="lead"><div class="dotc"></div><div><b>Aalborg Tømrer &amp; Snedker</b><span>Lars M. · Indehaver</span></div><em>Afsløret</em></div>
+<div class="lead"><div class="dotc"></div><div><b>Østjysk Malerservice</b><span>Pia K. · Direktør</span></div><em>Afsløret</em></div>
+<div class="lead"><div class="dotc"></div><div><b>Dansk El-Service ApS</b><span>Jonas H. · Indehaver</span></div><em>Afsløret</em></div>
+<div class="lead"><div class="dotc"></div><div><b>Grøn Energi Solutions</b><span>Mette S. · Partner</span></div><em class="q">Vent…</em></div>
+</div>
+<div class="hs-foot" style="color: #1F7A4D"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg> 184 emner lagt direkte i kampagnen "Håndværk Nord" · klar til at ringe</div>
 </div>
 </div>
 
 <!-- floating toasts -->
 <div class="float1" data-parallax="-0.18" style="position: absolute; top: 0; left: -8px; z-index: 2">
 <div style="display: flex; align-items: center; gap: 12px; background: #1A1410; color: #FBF7F2; padding: 12px 16px; border-radius: 16px; font-size: 14px; box-shadow: 0 20px 40px -20px rgba(26,20,16,.6)">
-<span style="width: 32px; height: 32px; border-radius: 10px; background: #EB7A34; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A1410" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M4 7l8 6 8-6"></path></svg></span>
-<span><b style="font-weight: 600">Tilbud sendt</b><br><span style="color: #C9BBAE; font-size: 13px">Google Ads · 5.000 kr./md.</span></span>
+<span style="width: 32px; height: 32px; border-radius: 10px; background: #EB7A34; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1A1410" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"></path><path d="M8 12h8M8 9h5"></path></svg></span>
+<span><b style="font-weight: 600">Ny SMS fra kunde</b><br><span style="color: #C9BBAE; font-size: 13px">"Lyder godt, send tilbuddet"</span></span>
 </div>
 </div>
-<div class="float2" data-parallax="-0.1" style="position: absolute; bottom: 70px; right: -8px; z-index: 2">
-<div style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,.62); padding: 12px 16px; border-radius: 16px; font-size: 14px; border: 1px solid #EADFD3; box-shadow: 0 20px 40px -24px rgba(26,20,16,.4)">
+<div class="float2" data-parallax="-0.1" style="position: absolute; bottom: 24px; right: -8px; z-index: 2">
+<div class="glass" style="display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,.9); padding: 12px 16px; border-radius: 16px; font-size: 14px; border: 1px solid #EADFD3; box-shadow: 0 20px 40px -24px rgba(26,20,16,.4)">
 <span style="width: 32px; height: 32px; border-radius: 10px; background: #E2F3E9; display: flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg></span>
-<span><b style="font-weight: 600">Genopkald planlagt</b><br><span style="color: #6B5E54; font-size: 13px">Torsdag kl. 10:00 · automatisk påmindelse</span></span>
-</div>
-</div>
-<div class="float3" style="position: absolute; bottom: 0; left: 8px; z-index: 2">
-<div class="toast" style="display: flex; align-items: center; gap: 10px; background: #FCE9DB; padding: 10px 14px; border-radius: 14px; font-size: 13px; color: #6B2C0A; max-width: 300px">
-<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8A3A10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5 3.6 1.9 6.4L12 16.3 7.1 20 9 13.6 4 10l6.1-1.2z"></path></svg>
-<span><b>Aura AI:</b> <span id="tip">Nævn at Google Ads-pakken starter ved 5.000 kr./md.</span></span>
+<span><b style="font-weight: 600">Møde booket</b><br><span style="color: #6B5E54; font-size: 13px">Synkroniseret til Google &amp; Outlook</span></span>
 </div>
 </div>
 </div>
@@ -447,52 +242,47 @@ Interesseret i Google Ads. Vil have tilbud på mail i dag. Genopkald torsdag kl.
 
 <!-- ============ BEREGNER ============ -->
 <section id="beregner" style="padding: 0 24px 120px">
-<div class="glass reveal r-scale" style="max-width: 1240px; margin: 0 auto; background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 36px; padding: clamp(28px, 4vw, 56px); display: flex; flex-wrap: wrap; gap: 48px">
+<div class="reveal r-scale glass" style="max-width: 1240px; margin: 0 auto; background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 36px; padding: clamp(28px, 4vw, 56px); display: flex; flex-wrap: wrap; gap: 48px">
 <div style="flex: 1 1 420px; min-width: 0">
 <div class="mono" style="font-size: 13px; letter-spacing: .12em; color: #B4501A">TIDSBEREGNER</div>
-<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.02; font-weight: 800">Hvor meget tid bruger I på alt andet end at sælge?</h2>
-<p style="margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: #5A4D43">Træk i sliderne og se, hvad manuel opfølgning koster jer hver uge.</p>
-
+<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.02; font-weight: 800">Hvor meget tid kan I frigøre til at sælge?</h2>
+<p style="margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: #5A4D43">Et samlet system sparer typisk 20–60 minutter pr. sælger om dagen: mindre søgning efter emner og noter, færre skift mellem systemer, hurtigere opkald og nemmere planlægning af opfølgning. Træk i sliderne og se, hvad det betyder for jer.</p>
 <div style="margin-top: 36px; display: flex; flex-direction: column; gap: 28px">
 <div>
 <label for="r1" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Sælgere i teamet</span><span class="mono" style="color: #B4501A"><span id="o-sellers">3</span></span></label>
 <input id="r1" type="range" min="1" max="25" value="3">
 </div>
 <div>
-<label for="r2" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Opkald pr. sælger pr. dag</span><span class="mono" style="color: #B4501A"><span id="o-calls">60</span></span></label>
-<input id="r2" type="range" min="10" max="150" step="5" value="60">
+<label for="r3" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Minutter sparet pr. sælger pr. dag</span><span class="mono" style="color: #B4501A"><span id="o-admin">40</span> min.</span></label>
+<input id="r3" type="range" min="10" max="90" step="5" value="40">
+<div style="display: flex; justify-content: space-between; font-size: 12px; color: #8C7B6E; margin-top: 6px"><span>Forsigtigt: 20 min.</span><span>Typisk: 40 min.</span><span>Ambitiøst: 60 min.</span></div>
 </div>
 <div>
-<label for="r3" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Minutters admin pr. opkald i dag</span><span class="mono" style="color: #B4501A"><span id="o-admin">4</span> min.</span></label>
-<input id="r3" type="range" min="2" max="10" value="4">
-<div style="font-size: 14px; color: #6B5E54; margin-top: 6px">Excel, noter, mails, finde nummer, planlægge genopkald</div>
+<label for="r2" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Minutter pr. samtale i gennemsnit</span><span class="mono" style="color: #B4501A"><span id="o-calls">5</span> min.</span></label>
+<input id="r2" type="range" min="2" max="15" value="5">
+<div style="font-size: 14px; color: #6B5E54; margin-top: 6px">Bruges til at omregne den sparede tid til ekstra samtaler</div>
 </div>
 </div>
 </div>
-
-<div style="flex: 1 1 420px; min-width: 0; background: rgba(251,247,242,.7); border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
+<div class="glass" style="flex: 1 1 420px; min-width: 0; background: rgba(251,247,242,.7); border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
 <div>
-<div style="font-size: 16px; color: #5A4D43">Tid I kan få tilbage</div>
+<div style="font-size: 16px; color: #5A4D43">Frigjort tid for hele teamet</div>
 <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 6px">
-<span class="disp" style="font-size: clamp(64px, 7vw, 104px); font-weight: 800; line-height: 1; color: #C2531A"><span id="o-hoursWeek">9</span></span>
-<span style="font-size: 20px; font-weight: 600">timer om ugen</span>
-</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 14px">
-<div>
-<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A4D43; margin-bottom: 6px"><span>Admin i dag</span><span class="mono"><span id="o-todayH">60</span> t/uge</span></div>
-<div style="height: 14px; border-radius: 999px; background: #EADFD3"><div style="height: 100%; width: 100%; border-radius: 999px; background: #8C7B6E"></div></div>
-</div>
-<div>
-<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A4D43; margin-bottom: 6px"><span>Admin med 3SA</span><span class="mono"><span id="o-afterH">15</span> t/uge</span></div>
-<div style="height: 14px; border-radius: 999px; background: #EADFD3"><div style="height: 100%; width: 25%; border-radius: 999px; background: #EB7A34; transition: width .5s" id="o-bar"></div></div>
+<span class="disp" style="font-size: clamp(64px, 7vw, 104px); font-weight: 800; line-height: 1; color: #C2531A"><span id="o-hoursMonth">42</span></span>
+<span style="font-size: 20px; font-weight: 600">timer om måneden</span>
 </div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
-<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-hoursMonth">39</span> t</div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">frigivet pr. måned</div></div>
-<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800">+<span id="o-extraCalls">584</span></div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">ekstra opkald pr. måned</div></div>
+<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-hoursWeek">10</span> t</div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">frigivet pr. uge</div></div>
+<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-perSeller">14</span> t</div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">pr. sælger pr. måned</div></div>
+<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800">+<span id="o-extraCalls">504</span></div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">ekstra samtaler pr. måned</div></div>
+<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-days">5</span></div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">hele arbejdsdage pr. måned</div></div>
 </div>
-<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6B5E54">Estimat. Antager ca. 1 min. admin pr. opkald med 3SA (status, note og genopkald i samme skærmbillede) og 4 min. pr. ekstra opkald inkl. samtale. 5 arbejdsdage pr. uge.</p>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A4D43"><span>Andel af en 7,4-timers arbejdsdag</span><span class="mono"><span id="o-pct">9</span> %</span></div>
+<div style="height: 14px; border-radius: 999px; background: #EADFD3"><div style="height: 100%; width: 9%; border-radius: 999px; background: #EB7A34; transition: width .5s" id="o-bar"></div></div>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6B5E54">Regneeksempel, ikke et dokumenteret gennemsnit. Beregnet med 21 arbejdsdage pr. måned. Tallet er frigjort kapacitet til fx flere kundesamtaler, ikke sparet løn.</p>
 </div>
 </div>
 </section>
@@ -530,104 +320,226 @@ Interesseret i Google Ads. Vil have tilbud på mail i dag. Genopkald torsdag kl.
 </div>
 </section>
 
-<!-- ============ FUNKTIONER (mørk) ============ -->
-<section id="funktioner" style="background: #17110D; color: #FBF7F2; padding: 120px 24px; border-radius: 48px 48px 0 0">
+<!-- ============ RUNDVISNING ============ -->
+<section id="rundvisning" style="padding: 0 24px 120px">
 <div style="max-width: 1240px; margin: 0 auto">
-<div class="reveal" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px">
-<div style="max-width: 680px">
-<div class="mono" style="font-size: 13px; letter-spacing: .12em; color: #EB7A34">ALT DU BEHØVER TIL SALG</div>
-<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(36px, 4.6vw, 64px); line-height: 1; font-weight: 800">Fra første opkald til underskrevet kontrakt.</h2>
+<div class="reveal" style="max-width: 820px">
+<div class="mono" style="font-size: 13px; letter-spacing: .12em; color: #B4501A">RUNDVISNING · DEN KORTE VERSION</div>
+<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(36px, 4.6vw, 64px); line-height: 1; font-weight: 800">Fem systemer. Samlet i et, der arbejder for dig.</h2>
+<p style="margin: 20px 0 0; font-size: 18px; line-height: 1.6; color: #5A4D43">Opkald, emner, tilbud, opfølgning, SMS, kalender og AI et sted. Her er, hvad hver del gør, og hvorfor det giver flere salg.</p>
 </div>
-<p style="margin: 0; max-width: 380px; font-size: 17px; line-height: 1.6; color: #C9BBAE">Hvert modul er bygget til at fjerne et manuelt skridt fra din hverdag.</p>
-</div>
+<div class="tour-wrap">
+<aside class="tour-nav reveal"><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A; margin-bottom: 12px">SPRING TIL</div><ol id="tournav"><li><a href="#t-dialer" data-t="t-dialer"><span class="mono">01</span>Dialeren</a></li><li><a href="#t-kampagner" data-t="t-kampagner"><span class="mono">02</span>Kampagner og emner</a></li><li><a href="#t-statusser" data-t="t-statusser"><span class="mono">03</span>Statusser og genopkald</a></li><li><a href="#t-tilbud" data-t="t-tilbud"><span class="mono">04</span>Tilbud og e-mails</a></li><li><a href="#t-tilbudskampagner" data-t="t-tilbudskampagner"><span class="mono">05</span>Tilbudskampagner</a></li><li><a href="#t-aura" data-t="t-aura"><span class="mono">06</span>Aura AI</a></li><li><a href="#t-nye-kunder" data-t="t-nye-kunder"><span class="mono">07</span>Find nye kunder</a></li><li><a href="#t-sms" data-t="t-sms"><span class="mono">08</span>SMS, indgående opkald og numre</a></li><li><a href="#t-kalender" data-t="t-kalender"><span class="mono">09</span>Kalender</a></li><li><a href="#t-ledelse" data-t="t-ledelse"><span class="mono">10</span>Ledelse og overblik</a></li></ol><div class="lg-prog" aria-hidden="true"><i id="tourprog"></i></div></aside>
+<div class="tour-list">
+<article class="tour-block reveal" id="t-dialer">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">01 · DIALEREN</div><h3 class="disp">Hjertet i systemet: den næste kunde, uden at du leder.</h3></div></div>
+<p class="tour-desc">Klik på en kampagne, og dialeren åbner straks det næste emne og ringer op direkte fra browseren. Rækkefølgen er ikke tilfældig: først aftalte genopkald, når klokkeslættet er nået, så helt nye emner, mens de stadig er varme, og til sidst telefonsvarer-emner, der automatisk kommer frem igen efter tre timer.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Køen deler sig selv op i Ubehandlede, Kommende, Behandlede og Mine genopkald</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>To sælgere kan aldrig ringe til samme kunde på samme tid</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Ingen bliver ringet op igen og igen for tidligt</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>Sælgeren spilder ingen tid på at finde den næste. Det giver flere samtaler i timen, og ingen aftale glemmes.</div>
+</article>
+<article class="tour-block reveal" id="t-kampagner">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">02 · KAMPAGNER OG EMNER</div><h3 class="disp">Leads fra hjemmesiden ligger i dialeren på få sekunder.</h3></div></div>
+<p class="tour-desc">Opret kampagner med dine egne felter, fx pris, adresse eller kvadratmeter. Emner kommer ind via import, webhook fra din hjemmeside eller formular, Pipedrive, Google Maps-scraperen eller B2B-scraperen. Filtrer på status og dato, og træk kampagnerne i den rækkefølge, du vil have dem vist.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Egne felter pr. kampagne</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Import, webhook, Pipedrive og scrapere</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Filtre: i dag, sidste 3 dage, måned eller valgt dato</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>Den, der ringer først, vinder kunden. Her ringer du, mens leadet stadig er varmt.</div>
+</article>
+<article class="tour-block reveal" id="t-statusser">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"></path><circle cx="7.5" cy="7.5" r="1.5" fill="#C2531A"></circle></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">03 · STATUSSER OG GENOPKALD</div><h3 class="disp">Pipelinen holder sig selv ren.</h3></div></div>
+<p class="tour-desc">Du laver selv dine statusser, fx Succes, Ikke interesseret, Ugyldigt, Telefonsvarer og Genopkald. Et genopkald kan sættes til dig selv eller en kollega, og den daglige rapport viser, hvornår telefonsvarer-emnerne kommer frem igen.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Egne statusser, et klik i samtalen</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Genopkald til dig selv eller en kollega</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Afsluttede emner forsvinder, åbne kommer tilbage</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>Det, der er afsluttet, forsvinder fra dialeren. Det, der skal følges op på, kommer tilbage af sig selv.</div>
+</article>
+<article class="tour-block reveal" id="t-tilbud">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M4 7l8 6 8-6"></path></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">04 · TILBUD OG E-MAILS</div><h3 class="disp">Send tilbuddet, mens kunden stadig er i røret.</h3></div></div>
+<p class="tour-desc">Send et professionelt tilbud direkte fra emnet med dine egne skabeloner. Kundens navn, pris, adresse og dine noter fra samtalen sættes ind automatisk. Du kan se, om kunden har åbnet tilbuddet, og hvor mange gange. Opfølgningsmails kan sendes til op til 25 kunder på en gang, og hver opfølgning gemmes på emnet.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Egne skabeloner med dynamiske felter</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Se hvornår og hvor mange gange tilbuddet er åbnet</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Opfølgning til op til 25 kunder ad gangen</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>Når du kan se, at kunden lige har åbnet tilbuddet, ved du præcis, hvornår du skal ringe.</div>
+</article>
+<article class="tour-block reveal" id="t-tilbudskampagner">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">05 · TILBUDSKAMPAGNER</div><h3 class="disp">Det unikke: opfølgningen sker af sig selv.</h3></div></div>
+<p class="tour-desc">Når du sender et tilbud, lander kunden automatisk i en tilbudskampagne, hvor der bliver fulgt op. Emnet er personligt: kun den sælger, der sendte tilbuddet, kan se det, så kollegaer ikke kan tage hinandens kunder. Admin kan slå delt visning til for hele organisationen, mens genopkald forbliver personlige.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Automatisk opfølgning efter hvert tilbud</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Personlige emner, ingen kan tage din kunde</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Se hvem der sendte, hvornår og selve tilbuddet</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>De fleste salg tabes, fordi ingen følger op. Her sker det automatisk. Det er der meget få dialere, der kan.</div>
+</article>
+<article class="tour-block reveal" id="t-aura">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5 3.6 1.9 6.4L12 16.3 7.1 20 9 13.6 4 10l6.1-1.2z"></path></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">06 · AURA AI</div><h3 class="disp">En AI-kollega, der kender jeres virksomhed.</h3></div></div>
+<p class="tour-desc">Aura er en AI-assistent, der kun bruger virksomhedens egen, godkendte viden. Aura Stemme tager imod indgående opkald som en rigtig medarbejder, svarer i en naturlig tone og laver en udskrift af samtalen. AI-coachen hjælper med indvendinger under opkaldet og giver feedback bagefter, og Aura kan skrive jeres opkaldsscripts.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Aura Stemme besvarer opkald, også uden for åbningstid</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>AI-coach og analyse af hver samtale</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Opkaldsscripts på få sekunder</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>Ingen opkald går tabt, og nye sælgere bliver hurtigere gode, fordi de får hjælp, mens de taler med kunden.</div>
+</article>
+<article class="tour-block reveal" id="t-nye-kunder">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">07 · FIND NYE KUNDER</div><h3 class="disp">Køb ikke dyre lister. Find præcis dem, du vil have.</h3></div></div>
+<p class="tour-desc">Med B2B Lead Scraperen (Apollo) søger du på stillingstitel, branche, område og størrelse. Det er gratis at søge, du betaler kun, når du afslører kontaktoplysninger, og aldrig to gange for samme kontakt. Google Maps-scraperen finder lokale virksomheder. Alt lander direkte i en kampagne.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>B2B Lead Scraper med filtre på stilling, branche, område og størrelse</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Google Maps-scraper til lokale virksomheder</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Betal kun for afslørede kontakter</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>Du finder præcis de kunder, du vil have, og de ligger i dialeren med det samme.</div>
+</article>
+<article class="tour-block reveal" id="t-sms">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"></path><path d="M8 12h8M8 9h5"></path></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">08 · SMS, INDGÅENDE OPKALD OG NUMRE</div><h3 class="disp">Hele samtalen med kunden, samlet et sted.</h3></div></div>
+<p class="tour-desc">Send og modtag SMS i tråde direkte fra systemet. Indgående opkald logges, og kendte kunder genkendes automatisk. Køb dine egne numre eller brug et verificeret nummer, du allerede har. Opkaldsoptagelse kan tilvælges (100 kr./md.), og optagelser slettes automatisk efter 90 dage.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>SMS-tråde pr. kunde</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Indgående opkald matches med kendte kunder</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Egne numre eller dit nuværende nummer</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>Uanset om kunden ringer, skriver eller svarer på et tilbud, ligger det på samme emne.</div>
+</article>
+<article class="tour-block reveal" id="t-kalender">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">09 · KALENDER</div><h3 class="disp">Book mødet, mens I taler. Det ligger i kalenderen med det samme.</h3></div></div>
+<p class="tour-desc">Tovejssynkronisering med Google og Outlook. Book en aftale direkte fra emnet, se dine kollegaers kalendere, og få påmindelser, så ingen glemmer et møde.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Synk med Google og Outlook begge veje</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Book direkte fra emnet</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Se kollegaers kalendere og få påmindelser</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>Ingen dobbeltbookinger og ingen mødeindkaldelser, der skal sendes manuelt bagefter.</div>
+</article>
+<article class="tour-block reveal" id="t-ledelse">
+<div class="tour-head"><span class="tour-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg></span><div><div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">10 · LEDELSE OG OVERBLIK</div><h3 class="disp">Se hvad der faktisk sker, uden at spørge.</h3></div></div>
+<p class="tour-desc">Daglig rapport, rapporter over omsætning, forbrug og aktivitet. Søg i alle emner og opkald, og se de seneste aktiviteter. Brugerroller som admin og bruger, og hver organisation er helt adskilt fra de andre.</p>
+<ul class="tour-pts"><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Daglig rapport pr. sælger</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Søg i alle emner og opkald</li><li style="display: flex; gap: 10px; align-items: flex-start"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none; margin-top: 1px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Admin- og brugerroller, fuld adskillelse mellem organisationer</li></ul>
+<div class="tour-why"><b>Hvorfor det er bedre</b>Lederen kan følge med i realtid i stedet for at vente på ugens statusmøde.</div>
+</article>
 
-<div style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px">
-
-<!-- Kampagner -->
-<div class="reveal card spot" style="background: #221912; border: 1px solid #33271E; border-radius: 28px; padding: 28px; grid-column: span 1">
-<div style="display: flex; align-items: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg><h3 style="margin: 0; font-size: 20px; font-weight: 600">Kampagner</h3></div>
-<p style="margin: 8px 0 0; font-size: 15px; color: #C9BBAE; line-height: 1.5">Upload leads, tildel sælgere og følg fremdriften i realtid.</p>
-<div style="margin-top: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 14px">
-<div style="display: flex; justify-content: space-between; padding: 12px 14px; background: #2A1F18; border-radius: 12px"><span>Forårskampagne 2026</span><span class="mono" style="color: #F4A574">142 ubehandlede</span></div>
-<div style="display: flex; justify-content: space-between; padding: 12px 14px; background: #2A1F18; border-radius: 12px"><span>Energi B2B Q2</span><span class="mono" style="color: #F4A574">56 ubehandlede</span></div>
-<div style="display: flex; justify-content: space-between; padding: 12px 14px; background: #2A1F18; border-radius: 12px"><span>Forsikring Leads DK</span><span class="mono" style="color: #F4A574">312 ubehandlede</span></div>
-</div>
-</div>
-
-<!-- Daglig rapport -->
-<div class="reveal card spot" style="background: #221912; border: 1px solid #33271E; border-radius: 28px; padding: 28px">
-<div style="display: flex; align-items: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg><h3 style="margin: 0; font-size: 20px; font-weight: 600">Daglig rapport</h3></div>
-<p style="margin: 8px 0 0; font-size: 15px; color: #C9BBAE; line-height: 1.5">Opkald, salg, taletid og konvertering pr. sælger — uden at nogen skal tælle.</p>
-<div style="margin-top: 20px; display: flex; align-items: flex-end; gap: 10px; height: 120px" aria-hidden="true">
-<div class="growbar" style="flex: 1; height: 100%; background: #EB7A34; border-radius: 8px 8px 0 0"></div>
-<div class="growbar" style="flex: 1; height: 81%; background: #EB7A34; border-radius: 8px 8px 0 0; opacity: .85"></div>
-<div class="growbar" style="flex: 1; height: 66%; background: #EB7A34; border-radius: 8px 8px 0 0; opacity: .7"></div>
-<div class="growbar" style="flex: 1; height: 62%; background: #EB7A34; border-radius: 8px 8px 0 0; opacity: .6"></div>
-<div class="growbar" style="flex: 1; height: 47%; background: #EB7A34; border-radius: 8px 8px 0 0; opacity: .5"></div>
-</div>
-<div style="display: flex; justify-content: space-between; margin-top: 12px; font-size: 13px; color: #C9BBAE"><span>167 opkald</span><span>20 salg</span><span>8t 07m taletid</span></div>
-</div>
-
-<!-- Salgskatalog -->
-<div class="reveal card spot" style="background: #221912; border: 1px solid #33271E; border-radius: 28px; padding: 28px">
-<div style="display: flex; align-items: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><path d="M3 6h18M16 10a4 4 0 0 1-8 0"></path></svg><h3 style="margin: 0; font-size: 20px; font-weight: 600">Salgskatalog</h3></div>
-<p style="margin: 8px 0 0; font-size: 15px; color: #C9BBAE; line-height: 1.5">Produkter, minimumspriser og provisionstrin, så sælgerne altid ved, hvad de må sælge til.</p>
-<div style="margin-top: 20px; background: #2A1F18; border-radius: 16px; padding: 18px">
-<div style="display: flex; justify-content: space-between; align-items: center"><b style="font-weight: 600">Google Ads</b><span style="font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #33271E; color: #C9BBAE">Månedlig</span></div>
-<div class="disp" style="font-size: 28px; font-weight: 800; color: #F4A574; margin-top: 8px">5.000 kr.</div>
-<div style="display: flex; justify-content: space-between; font-size: 13px; color: #C9BBAE; margin-top: 10px"><span>5.000–10.000 kr.</span><span>35 %</span></div>
-<div style="display: flex; justify-content: space-between; font-size: 13px; color: #7FD3A6; margin-top: 6px"><span>10.000+ kr.</span><span>50 %</span></div>
-</div>
-</div>
-
-<!-- Kundeoverblik -->
-<div class="reveal card spot" style="background: #221912; border: 1px solid #33271E; border-radius: 28px; padding: 28px">
-<div style="display: flex; align-items: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h4"></path></svg><h3 style="margin: 0; font-size: 20px; font-weight: 600">Kundeoverblik</h3></div>
-<p style="margin: 8px 0 0; font-size: 15px; color: #C9BBAE; line-height: 1.5">Kontrakter, ydelser og månedlige opfølgninger samlet — et flueben pr. måned.</p>
-<div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px; font-size: 14px">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><span>Aalborg Tømrer &amp; Snedker</span><span style="display: flex; gap: 4px" aria-hidden="true"><span class="pop" style="width: 18px; height: 18px; border-radius: 5px; background: #1F7A4D"></span><span class="pop" style="width: 18px; height: 18px; border-radius: 5px; background: #1F7A4D"></span><span class="pop" style="width: 18px; height: 18px; border-radius: 5px; background: #1F7A4D"></span><span class="pop" style="width: 18px; height: 18px; border-radius: 5px; background: #1F7A4D"></span><span style="width: 18px; height: 18px; border-radius: 5px; background: #33271E"></span></span></div>
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><span>Østjysk Malerservice</span><span style="display: flex; gap: 4px" aria-hidden="true"><span style="width: 18px; height: 18px; border-radius: 5px; background: #33271E"></span><span class="pop" style="width: 18px; height: 18px; border-radius: 5px; background: #1F7A4D"></span><span class="pop" style="width: 18px; height: 18px; border-radius: 5px; background: #1F7A4D"></span><span style="width: 18px; height: 18px; border-radius: 5px; background: #33271E"></span><span style="width: 18px; height: 18px; border-radius: 5px; background: #33271E"></span></span></div>
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px"><span>Dansk El-Service ApS</span><span style="display: flex; gap: 4px" aria-hidden="true"><span style="width: 18px; height: 18px; border-radius: 5px; background: #33271E"></span><span style="width: 18px; height: 18px; border-radius: 5px; background: #33271E"></span><span style="width: 18px; height: 18px; border-radius: 5px; background: #33271E"></span><span class="pop" style="width: 18px; height: 18px; border-radius: 5px; background: #1F7A4D"></span><span style="width: 18px; height: 18px; border-radius: 5px; background: #33271E"></span></span></div>
-</div>
-</div>
-
-<!-- Indgående -->
-<div class="reveal card spot" style="background: #221912; border: 1px solid #33271E; border-radius: 28px; padding: 28px">
-<div style="display: flex; align-items: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 2v6h6M22 2l-6 6"></path><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg><h3 style="margin: 0; font-size: 20px; font-weight: 600">Indgående opkald</h3></div>
-<p style="margin: 8px 0 0; font-size: 15px; color: #C9BBAE; line-height: 1.5">Når kunden ringer tilbage, ved du præcis hvem det er — automatisk lead-matching.</p>
-<div style="margin-top: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 14px">
-<div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #2A1F18; border-radius: 12px"><span>Dansk Stål A/S</span><span style="font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #173826; color: #7FD3A6">Besvaret</span></div>
-<div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #2A1F18; border-radius: 12px"><span>+45 31 55 92 04</span><span style="font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #3D1A17; color: #F7A39B">Misset</span></div>
-<div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; background: #2A1F18; border-radius: 12px"><span>Grøn Energi Solutions</span><span style="font-size: 12px; padding: 4px 10px; border-radius: 999px; background: #173826; color: #7FD3A6">Besvaret</span></div>
-</div>
-</div>
-
-<!-- Aktivitetslog -->
-<div class="reveal card spot" style="background: #221912; border: 1px solid #33271E; border-radius: 28px; padding: 28px">
-<div style="display: flex; align-items: center; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg><h3 style="margin: 0; font-size: 20px; font-weight: 600">Aktivitetslog</h3></div>
-<p style="margin: 8px 0 0; font-size: 15px; color: #C9BBAE; line-height: 1.5">Hver note, statusændring og genopkald — så alle i teamet ved, hvor kunden står.</p>
-<div style="margin-top: 20px; display: flex; flex-direction: column; gap: 0; font-size: 14px; border-left: 2px solid #33271E; padding-left: 18px">
-<div style="position: relative; padding-bottom: 14px"><span style="position: absolute; left: -25px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #EB7A34"></span><b style="font-weight: 600">Note tilføjet</b><div style="color: #C9BBAE">Martin er på ferie, ring torsdag</div></div>
-<div style="position: relative; padding-bottom: 14px"><span style="position: absolute; left: -25px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #8C7B6E"></span><b style="font-weight: 600">Status: Genopkald</b><div style="color: #C9BBAE">Ændret fra "Succes"</div></div>
-<div style="position: relative"><span style="position: absolute; left: -25px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: #8C7B6E"></span><b style="font-weight: 600">Status: Succes</b><div style="color: #C9BBAE">Ændret fra "Ubehandlet"</div></div>
-</div>
 </div>
 </div>
 </div>
 </section>
 
-<!-- ============ AURA AI ============ -->
-<section id="aura" style="background: #17110D; color: #FBF7F2; padding: 0 24px 120px; border-radius: 0 0 48px 48px">
+<!-- ============ BRANCHER ============ -->
+<section id="brancher" style="padding: 0 24px 120px">
+<div style="max-width: 1240px; margin: 0 auto">
+<div class="reveal" style="text-align: center; max-width: 760px; margin: 0 auto">
+<div class="mono" style="font-size: 13px; letter-spacing: .12em; color: #B4501A">SE DET I DIN BRANCHE</div>
+<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(36px, 4.6vw, 64px); line-height: 1; font-weight: 800">Vælg din branche, og se hvordan det ser ud i din hverdag.</h2>
+<p style="margin: 16px auto 0; max-width: 600px; font-size: 18px; line-height: 1.6; color: #5A4D43">Samme system, forskellige hverdage. Klik på din branche og se et eksempel.</p>
+</div>
+<div class="ind-tabs reveal" role="tablist" aria-label="Brancher"><button type="button" class="ind-tab on" data-ind="revisor"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M8 6h8M8 10h2M12 10h2M16 10h0M8 14h2M12 14h2M16 14v4M8 18h2M12 18h2"></path></svg><span>Revisor &amp; bogholder</span></button><button type="button" class="ind-tab" data-ind="forsikring"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 3.5v6c0 5-3.4 8.6-8 10.5-4.6-1.9-8-5.5-8-10.5v-6z"></path></svg><span>Forsikringsmægler</span></button><button type="button" class="ind-tab" data-ind="ejendom"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"></path></svg><span>Ejendomsmægler</span></button><button type="button" class="ind-tab" data-ind="salg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1.5" fill="currentColor"></circle></svg><span>Salgsteam &amp; telemarketing</span></button><button type="button" class="ind-tab" data-ind="kundeservice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg><span>Kundeservice</span></button><button type="button" class="ind-tab" data-ind="haandvaerk"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0 5 5l-9 9a2.1 2.1 0 0 1-3-3l9-9z"></path><path d="M19.7 11.3L21 10l-7-7-1.3 1.3"></path></svg><span>Håndværk &amp; service</span></button></div>
+<div class="ind-panes reveal glass">
+<div class="ind-pane on" data-ind="revisor">
+<div class="ind-copy">
+<div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">REVISOR &AMP; BOGHOLDER</div>
+<h3 class="disp">Følg op på årsregnskab og rådgivning, uden at det æder din tid.</h3>
+<p class="ind-prob">Du har hundredvis af kunder, der skal mindes om frister, tilbydes rådgivning og følges op på tilbud. I dag sker det i Outlook og et regneark, og det glider.</p>
+<ul class="ind-pts"><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg></span><div><b>Tilbud på årsregnskab følger op af sig selv</b><span>Send tilbuddet fra emnet. Kunden lander i en tilbudskampagne, og opfølgningen kører automatisk.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg></span><div><b>Møder direkte i kalenderen</b><span>Book statusmødet, mens I taler. Det synker til Outlook eller Google.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><div><b>Se hvem der har åbnet tilbuddet</b><span>Ring til dem, der kigger på det nu, i stedet for at gætte.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></span><div><b>Ring til hele porteføljen på en eftermiddag</b><span>Importer kundelisten, og lad dialeren tage den næste.</span></div></li></ul>
+<div class="tour-why"><b>Resultat</b>Ingen kunde falder mellem to stole, og du bruger tiden på rådgivning i stedet for på at huske.</div>
+</div>
+<div class="ind-scene glass">
+<div class="hs-head"><span class="mono">TILBUDSKAMPAGNE · ÅRSREGNSKAB 2026</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg> Opfølgning kører</span></div>
+<div class="hs-flow"><div class="step done"><i>1</i><div><b>Tilbud sendt til Hansen Byg ApS</b><span>Årsregnskab + bogføring · 2.450 kr./md.</span></div></div><div class="step done"><i>2</i><div><b>Åbnet 2 gange</b><span>Senest i går kl. 16:40</span></div></div><div class="step now"><i>3</i><div><b>Genopkald · i dag 10:00</b><span>Ligger først i din kø</span></div></div><div class="step "><i>4</i><div><b>Statusmøde booket</b><span>Synkroniseret til Outlook</span></div></div></div>
+</div>
+</div>
+<div class="ind-pane" data-ind="forsikring">
+<div class="ind-copy">
+<div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">FORSIKRINGSMÆGLER</div>
+<h3 class="disp">Ram kunden, lige når policen skal fornys.</h3>
+<p class="ind-prob">Fornyelser, gennemgange og krydssalg kræver, at du ringer på det rigtige tidspunkt. Det kan ingen huske manuelt på tværs af 2.000 kunder.</p>
+<ul class="ind-pts"><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg></span><div><b>Genopkald på fornyelsesdatoen</b><span>Sæt genopkaldet, når policen tegnes. Det dukker op i køen 30 dage før.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"></path></svg></span><div><b>Aura Stemme tager opkald efter kl. 16</b><span>Kunden får svar, og du får en udskrift og et genopkald.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"></path><path d="M8 12h8M8 9h5"></path></svg></span><div><b>SMS-tråd pr. kunde</b><span>"Må jeg ringe kl. 14?" sendes og besvares fra samme emne.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5 3.6 1.9 6.4L12 16.3 7.1 20 9 13.6 4 10l6.1-1.2z"></path></svg></span><div><b>AI-coach til indvendinger</b><span>Få hjælp, når kunden siger "jeg har det billigere et andet sted".</span></div></li></ul>
+<div class="tour-why"><b>Resultat</b>Du mister ingen fornyelser, og de kunder, der ringer uden for åbningstid, bliver stadig til salg.</div>
+</div>
+<div class="ind-scene glass">
+<div class="hs-head"><span class="mono">AURA STEMME · INDGÅENDE 17:12</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"></path></svg> Efter lukketid</span></div>
+<div class="hs-chat"><div class="b in">Hej, min bilforsikring udløber i næste måned. Kan I give et tilbud?</div><div class="b out"><b>Aura</b>Hej Mette! Ja, det kan vi. Jeg får Jonas til at ringe dig op i morgen, passer kl. 10?</div><div class="b in">Perfekt.</div><div class="b sys"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg> Genopkald oprettet · i morgen 10:00 · udskrift gemt</div></div>
+</div>
+</div>
+<div class="ind-pane" data-ind="ejendom">
+<div class="ind-copy">
+<div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">EJENDOMSMÆGLER</div>
+<h3 class="disp">Leads fra hjemmesiden ringes op, før de kontakter en anden mægler.</h3>
+<p class="ind-prob">Køber- og sælgerleads kommer ind på alle tidspunkter. Den mægler, der ringer først, får mødet. I dag ligger de i en indbakke, til nogen får tid.</p>
+<ul class="ind-pts"><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span><div><b>Formular-leads lander i dialeren på sekunder</b><span>Webhook fra hjemmesiden eller boligportalen. Næste lead ringes op med det samme.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg></span><div><b>Book fremvisningen, mens I taler</b><span>Se kollegaernes kalender og book direkte fra emnet.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"></path><path d="M8 12h8M8 9h5"></path></svg></span><div><b>SMS med adresse og tidspunkt</b><span>Send bekræftelsen fra samme emne. Svaret lander i tråden.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg></span><div><b>Automatisk opfølgning på vurderinger</b><span>Send vurderingen som tilbud, og lad tilbudskampagnen følge op.</span></div></li></ul>
+<div class="tour-why"><b>Resultat</b>Du er først på telefonen hver gang, og fremvisningerne ligger i kalenderen uden ekstra mails.</div>
+</div>
+<div class="ind-scene glass">
+<div class="hs-head"><span class="mono">KAMPAGNE · LEADS FRA HJEMMESIDEN</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg> Webhook aktiv</span></div>
+<div class="hs-leads"><div class="lead"><div class="dotc"></div><div><b>Ny vurdering · Rosenvej 14</b><span>Kom ind for 12 sek. siden</span></div><em class="">Ringes nu</em></div><div class="lead"><div class="dotc"></div><div><b>Købslead · Villa i Lyngby</b><span>Fremvisning booket lør. 11:00</span></div><em class="">Booket</em></div><div class="lead"><div class="dotc"></div><div><b>Sælgerlead · Lejlighed Vesterbro</b><span>Vurdering sendt · åbnet 3 gange</span></div><em class="">Følges op</em></div></div>
+</div>
+</div>
+<div class="ind-pane" data-ind="salg">
+<div class="ind-copy">
+<div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">SALGSTEAM &AMP; TELEMARKETING</div>
+<h3 class="disp">Flere samtaler i timen. Ingen der ringer til samme kunde.</h3>
+<p class="ind-prob">Teamet skal ringe meget, og lederen skal kunne se, hvad der sker. Excel-ark og mobiltelefoner giver dobbeltopkald, glemte genopkald og nul overblik.</p>
+<ul class="ind-pts"><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></span><div><b>Dialeren vælger næste emne</b><span>Genopkald først, så varme leads, så telefonsvarere efter 3 timer.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span><div><b>Find nye kunder uden at købe lister</b><span>B2B Lead Scraper og Google Maps-scraper lægger emner direkte i kampagnen.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg></span><div><b>Tilbudskampagner, der følger op</b><span>Personlige emner, så ingen kan tage din kunde.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><div><b>Daglig rapport pr. sælger</b><span>Opkald, salg, taletid og konvertering, uden at spørge.</span></div></li></ul>
+<div class="tour-why"><b>Resultat</b>Hver sælger ringer mere og retfærdigt, og lederen ser resultatet samme dag.</div>
+</div>
+<div class="ind-scene glass">
+<div class="hs-head"><span class="mono">KAMPAGNE · ENERGI B2B Q2</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg> Auto-dial</span></div>
+<div class="hs-queue" style="margin-top:14px"><div><b>184</b><span>Ubehandlede</span></div><div><b>12</b><span>Kommende</span></div><div><b>6</b><span>Behandlede</span></div><div><b>9</b><span>Mine genopkald</span></div></div><div class="hs-leads"><div class="lead"><div class="dotc"></div><div><b>Nordisk Tagdækning A/S</b><span>Låst til Jonas · i samtale 2:14</span></div><em class="">Live</em></div><div class="lead"><div class="dotc"></div><div><b>Fynske Fragtmænd</b><span>Tilbud åbnet 14:19</span></div><em class="">Ring nu</em></div><div class="lead"><div class="dotc"></div><div><b>Skovgaard Rengøring</b><span>Telefonsvarer · frem igen 15:40</span></div><em class="">Venter</em></div></div>
+</div>
+</div>
+<div class="ind-pane" data-ind="kundeservice">
+<div class="ind-copy">
+<div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">KUNDESERVICE</div>
+<h3 class="disp">Kend kunden, før du siger hej.</h3>
+<p class="ind-prob">Indgående opkald fra ukendte numre, spørgsmål på SMS og "jeg ringede i går og talte med en anden". Uden historik starter hver samtale forfra.</p>
+<ul class="ind-pts"><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></span><div><b>Indgående opkald genkendes</b><span>Kendte kunder matches automatisk, og hele historikken står klar.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3V12a8 8 0 0 1 8-8h2a8 8 0 0 1 8 8z"></path><path d="M8 12h8M8 9h5"></path></svg></span><div><b>SMS-tråde direkte i systemet</b><span>Svar på beskeder fra samme skærm som opkaldene.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"></path></svg></span><div><b>Aura Stemme uden for åbningstid</b><span>Kunden får svar på de mest almindelige spørgsmål, og du får en udskrift.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg></span><div><b>Genopkald til den rette kollega</b><span>Sæt opkaldet til den, der kender sagen, med et klik.</span></div></li></ul>
+<div class="tour-why"><b>Resultat</b>Kunden oplever et firma, der husker, og dit team bruger ikke tid på at lede efter historikken.</div>
+</div>
+<div class="ind-scene glass">
+<div class="hs-head"><span class="mono">INDGÅENDE · +45 31 55 92 04</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg> Genkendt kunde</span></div>
+<div class="hs-call" style="margin-top:16px"><div class="hs-avatar live"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1A1410" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg></div><div><div class="hs-name">Dansk Stål A/S · Pia K.</div><div class="mono hs-sub">Sidste kontakt: i går · Jonas · "Spørger til levering"</div></div></div><div class="hs-chat"><div class="b in">Hej, jeg skrev i går om leveringen på ordre 4471?</div><div class="b sys"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg> Note fra i går vises: "Levering rykket til fredag, kunden ok"</div><div class="b out"><b>Du</b>Hej Pia, ja, den er bekræftet til fredag. Skal jeg sende en SMS med tidsrummet?</div></div>
+</div>
+</div>
+<div class="ind-pane" data-ind="haandvaerk">
+<div class="ind-copy">
+<div class="mono" style="font-size: 12px; letter-spacing: .12em; color: #B4501A">HÅNDVÆRK &AMP; SERVICE</div>
+<h3 class="disp">Giv tilbuddet, mens kunden stadig er varm.</h3>
+<p class="ind-prob">Du får henvendelser, mens du står på en stige. Når du får tid om aftenen, har kunden ringet til tre andre.</p>
+<ul class="ind-pts"><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="2" width="6" height="12" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0M12 17v5M8 22h8"></path></svg></span><div><b>Aura Stemme tager telefonen i arbejdstiden</b><span>Kunden får svar, og opgaven ligger som emne med note.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M4 7l8 6 8-6"></path></svg></span><div><b>Tilbud fra mobilen med dine egne felter</b><span>Adresse, kvadratmeter og pris sættes ind automatisk.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg></span><div><b>Opfølgning uden at huske det</b><span>Tilbudskampagnen minder dig om at ringe, når kunden har åbnet tilbuddet.</span></div></li><li><span class="ind-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg></span><div><b>Find kunder i dit område</b><span>Google Maps-scraperen finder lokale virksomheder, der har brug for dig.</span></div></li></ul>
+<div class="tour-why"><b>Resultat</b>Du svarer først og følger op automatisk, uden at skulle sætte dig ved computeren om aftenen.</div>
+</div>
+<div class="ind-scene glass">
+<div class="hs-head"><span class="mono">TILBUD · TAGRENOVERING</span><span class="live"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M4 7l8 6 8-6"></path></svg> Sendt fra mobilen</span></div>
+<div class="hs-doc"><div class="hs-doc-top"><b>Tilbud til Familien Larsen</b><span class="mono">#2026-0512</span></div><p>Tagrenovering på <em class="hl">Birkevej 8, 8000 Aarhus</em> · <em class="hl">142 m²</em> · <em class="hl">84.500 kr. ekskl. moms</em>. Opstart <em class="hl">uge 46</em>.</p></div><div class="hs-track"><div class="done"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg><span>Sendt 12:10 fra mobilen</span></div><div class="done pulse"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1F7A4D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg><span>Åbnet 12:32 <b>· ring nu</b></span></div></div>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ============ INTEGRATIONER ============ -->
+<section id="integrationer" style="padding: 0 24px 120px">
+<div class="reveal glass" style="max-width: 1240px; margin: 0 auto; background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 36px; padding: clamp(28px, 4vw, 56px); position: relative; overflow: hidden">
+<div class="int-orbit" aria-hidden="true"></div>
+<div style="position: relative; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: space-between">
+<div style="flex: 1 1 380px; min-width: 0; max-width: 520px">
+<div class="mono" style="font-size: 13px; letter-spacing: .12em; color: #B4501A">INTEGRATIONER</div>
+<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(32px, 3.8vw, 52px); line-height: 1.02; font-weight: 800">Behold det, I allerede bruger.</h2>
+<p style="margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: #5A4D43">3SA Dialer kobler sig på jeres nuværende setup. Kalenderen synker begge veje, leads flyder ind fra jeres CRM og hjemmeside, og mails sendes gennem jeres egen udbyder.</p>
+<ul style="list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: #3F352D">
+<li style="display: flex; gap: 10px; align-items: center"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Webhook fra enhver hjemmeside eller formular</li>
+<li style="display: flex; gap: 10px; align-items: center"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>CSV-import af eksisterende leads</li>
+<li style="display: flex; gap: 10px; align-items: center"><span style="width: 24px; height: 24px; border-radius: 50%; background: #FCE9DB; display: flex; align-items: center; justify-content: center; flex: none"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg></span>Skræddersyede integrationer efter aftale</li>
+</ul>
+</div>
+<div class="int-grid">
+<div class="reveal card glass int-card">
+<div class="int-logo"><img src="https://cdn.simpleicons.org/googlecalendar/4285F4" alt="Google Kalender logo" loading="lazy" onerror="this.parentNode.classList.add('nologo')"><span class="int-fallback" aria-hidden="true">G</span></div>
+<b>Google Kalender</b><span>Tovejssynk af aftaler</span>
+</div><div class="reveal card glass int-card">
+<div class="int-logo"><img src="https://cdn.simpleicons.org/microsoftoutlook/0078D4" alt="Outlook Kalender logo" loading="lazy" onerror="this.parentNode.classList.add('nologo')"><span class="int-fallback" aria-hidden="true">O</span></div>
+<b>Outlook Kalender</b><span>Tovejssynk af aftaler</span>
+</div><div class="reveal card glass int-card">
+<div class="int-logo"><img src="https://cdn.simpleicons.org/pipedrive/017737" alt="Pipedrive logo" loading="lazy" onerror="this.parentNode.classList.add('nologo')"><span class="int-fallback" aria-hidden="true">P</span></div>
+<b>Pipedrive</b><span>Emner direkte ind i kampagner</span>
+</div><div class="reveal card glass int-card">
+<div class="int-logo"><img src="https://cdn.simpleicons.org/resend/000000" alt="Resend logo" loading="lazy" onerror="this.parentNode.classList.add('nologo')"><span class="int-fallback" aria-hidden="true">R</span></div>
+<b>Resend</b><span>Udsendelse af tilbud og mails</span>
+</div><div class="reveal card glass int-card">
+<div class="int-logo"><img src="https://cdn.simpleicons.org/mailgun/F06B66" alt="Mailgun logo" loading="lazy" onerror="this.parentNode.classList.add('nologo')"><span class="int-fallback" aria-hidden="true">M</span></div>
+<b>Mailgun</b><span>Udsendelse af tilbud og mails</span>
+</div>
+<div class="reveal card int-card int-more"><b>Mangler jeres system?</b><span>Skriv til os, så kigger vi på det.</span><a class="btn magnet" href="mailto:hello@3sadialer.io" style="margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: #1A1410; color: #FBF7F2; font-size: 14px; font-weight: 600; text-decoration: none; min-height: 44px">Spørg os</a></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ AURA AI (mørk) ============ -->
+<section id="aura" data-band style="background: #17110D; color: #FBF7F2; padding: 120px 24px; border-radius: 48px">
 <div class="reveal r-scale spot" style="max-width: 1240px; margin: 0 auto; background: linear-gradient(135deg, #2A1F18 0%, #1E1611 60%, #2A1A10 100%); color: #FBF7F2; border: 1px solid #3A2C22; box-shadow: 0 0 0 1px rgba(235,122,52,.12), 0 60px 120px -60px rgba(235,122,52,.45); border-radius: 36px; padding: clamp(28px, 4vw, 64px); display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
 <div style="flex: 1 1 440px; min-width: 0">
-<span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(235,122,52,.16); color: #F4A574; font-size: 13px; font-weight: 600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5 3.6 1.9 6.4L12 16.3 7.1 20 9 13.6 4 10l6.1-1.2z"></path></svg>NYHED</span>
-<h2 class="disp" style="margin: 20px 0 0; font-size: clamp(36px, 4.4vw, 62px); line-height: 1; font-weight: 800">Mød <span class="shine" style="color: #C2531A">Aura AI</span> — din AI-salgsmakker.</h2>
-<p style="margin: 20px 0 0; font-size: 18px; line-height: 1.6; color: #C9BBAE">Live coaching under opkald, automatiske resumeer og AI-chat på dine egne salgsdata. Spar timer hver uge — og luk flere aftaler.</p>
+<span style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: rgba(235,122,52,.16); color: #F4A574; font-size: 13px; font-weight: 600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8L20 10l-5 3.6 1.9 6.4L12 16.3 7.1 20 9 13.6 4 10l6.1-1.2z"></path></svg>NYHED · AURA STEMME</span>
+<h2 class="disp" style="margin: 20px 0 0; font-size: clamp(36px, 4.4vw, 62px); line-height: 1; font-weight: 800">Mød <span class="shine" style="color: #C2531A">Aura AI</span>, kollegaen der aldrig misser et opkald.</h2>
+<p style="margin: 20px 0 0; font-size: 18px; line-height: 1.6; color: #C9BBAE">Aura Stemme tager telefonen, når I ikke kan, også uden for åbningstid. Den svarer i en naturlig tone, bruger kun jeres godkendte viden, gemmer udskriften på emnet og opretter genopkaldet. Imens coacher Aura jeres sælgere live i samtalen og giver feedback bagefter.</p>
 <div style="margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
-<div style="background: rgba(255,255,255,.05); border: 1px solid #3A2C22; border-radius: 18px; padding: 18px"><b style="font-weight: 600">Live coaching</b><div style="font-size: 14px; color: #C9BBAE; margin-top: 4px">Forslag i realtid under opkald</div></div>
-<div style="background: rgba(255,255,255,.05); border: 1px solid #3A2C22; border-radius: 18px; padding: 18px"><b style="font-weight: 600">Auto-resume</b><div style="font-size: 14px; color: #C9BBAE; margin-top: 4px">Noter skrives automatisk</div></div>
-<div style="background: rgba(255,255,255,.05); border: 1px solid #3A2C22; border-radius: 18px; padding: 18px"><b style="font-weight: 600">AI-chat</b><div style="font-size: 14px; color: #C9BBAE; margin-top: 4px">Spørg ind til dine egne data</div></div>
-<div style="background: rgba(255,255,255,.05); border: 1px solid #3A2C22; border-radius: 18px; padding: 18px"><b style="font-weight: 600">14 dage gratis</b><div style="font-size: 14px; color: #C9BBAE; margin-top: 4px">Prøv uden binding</div></div>
+<div style="background: rgba(255,255,255,.05); border: 1px solid #3A2C22; border-radius: 18px; padding: 18px"><b style="font-weight: 600">Aura Stemme</b><div style="font-size: 14px; color: #C9BBAE; margin-top: 4px">Besvarer indgående opkald</div></div>
+<div style="background: rgba(255,255,255,.05); border: 1px solid #3A2C22; border-radius: 18px; padding: 18px"><b style="font-weight: 600">AI-coach</b><div style="font-size: 14px; color: #C9BBAE; margin-top: 4px">Hjælp med indvendinger live</div></div>
+<div style="background: rgba(255,255,255,.05); border: 1px solid #3A2C22; border-radius: 18px; padding: 18px"><b style="font-weight: 600">Opkaldsanalyse</b><div style="font-size: 14px; color: #C9BBAE; margin-top: 4px">Feedback efter hver samtale</div></div>
+<div style="background: rgba(255,255,255,.05); border: 1px solid #3A2C22; border-radius: 18px; padding: 18px"><b style="font-weight: 600">Scripts</b><div style="font-size: 14px; color: #C9BBAE; margin-top: 4px">Genereres på jeres viden</div></div>
 </div>
 </div>
 <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
@@ -637,7 +549,7 @@ Interesseret i Google Ads. Vil have tilbud på mail i dag. Genopkald torsdag kl.
 Du har 3 genopkald i denne uge:
 <ul style="margin: 10px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px">
 <li><b style="font-weight: 600">Kronborg Logistics</b> — tor. Martin er på ferie til onsdag.</li>
-<li><b style="font-weight: 600">Fynske Fragtmænd</b> — tor. Kontrakt sendt på mail.</li>
+<li><b style="font-weight: 600">Fynske Fragtmænd</b> — tor. Tilbud åbnet 3 gange i går.</li>
 <li><b style="font-weight: 600">Skovgaard Rengøring</b> — fre. Lone får chefen til at ringe.</li>
 </ul>
 </div>
@@ -645,6 +557,19 @@ Du har 3 genopkald i denne uge:
 <span style="flex: 1">Spørg Aura om dine salgsdata<span class="dot">|</span></span>
 <span style="width: 40px; height: 40px; border-radius: 50%; background: #EB7A34; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A1410" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
 </div>
+</div>
+</div>
+</section>
+
+<!-- ============ DERFOR ============ -->
+<section id="funktioner" style="padding: 120px 24px">
+<div style="max-width: 1240px; margin: 0 auto">
+<div class="reveal" style="text-align: center; max-width: 760px; margin: 0 auto">
+<div class="mono" style="font-size: 13px; letter-spacing: .12em; color: #B4501A">DERFOR ER DET DET RIGTIGE VALG</div>
+<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(36px, 4.6vw, 64px); line-height: 1; font-weight: 800">Seks grunde til, at teams skifter til 3SA Dialer.</h2>
+</div>
+<div style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px">
+<div class="reveal card glass spot" style="background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 24px; padding: 28px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #FCE9DB; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg></span><h3 class="disp" style="margin: 18px 0 0; font-size: 22px; font-weight: 700">Flere samtaler i timen</h3><p style="margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: #5A4D43">Systemet vælger det næste emne for dig. Du ringer, du leder ikke.</p></div><div class="reveal card glass spot" style="background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 24px; padding: 28px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #FCE9DB; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12l-8 8-9-9V3h8z"></path><circle cx="7.5" cy="7.5" r="1.5" fill="#C2531A"></circle></svg></span><h3 class="disp" style="margin: 18px 0 0; font-size: 22px; font-weight: 700">Ingen glemte kunder</h3><p style="margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: #5A4D43">Genopkald, telefonsvarer og tilbud kommer automatisk tilbage i køen.</p></div><div class="reveal card glass spot" style="background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 24px; padding: 28px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #FCE9DB; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v16H4z"></path><path d="M4 7l8 6 8-6"></path></svg></span><h3 class="disp" style="margin: 18px 0 0; font-size: 22px; font-weight: 700">Opfølgning uden ekstra arbejde</h3><p style="margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: #5A4D43">Tilbudskampagnerne følger op af sig selv. Det er der få dialere, der kan.</p></div><div class="reveal card glass spot" style="background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 24px; padding: 28px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #FCE9DB; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg></span><h3 class="disp" style="margin: 18px 0 0; font-size: 22px; font-weight: 700">Alt samlet et sted</h3><p style="margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: #5A4D43">Opkald, CRM, tilbud, SMS, kalender og AI i et system. Ingen tab-hopping.</p></div><div class="reveal card glass spot" style="background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 24px; padding: 28px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #FCE9DB; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg></span><h3 class="disp" style="margin: 18px 0 0; font-size: 22px; font-weight: 700">Retfærdigt for sælgerne</h3><p style="margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: #5A4D43">Ingen kan tage hinandens kunder. Emner og genopkald er personlige.</p></div><div class="reveal card glass spot" style="background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 24px; padding: 28px"><span style="width: 48px; height: 48px; border-radius: 14px; background: #FCE9DB; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span><h3 class="disp" style="margin: 18px 0 0; font-size: 22px; font-weight: 700">Bygget til Danmark</h3><p style="margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: #5A4D43">Dansk sprog, priser i DKK og regler efter dansk lov. Data hostet i EU.</p></div>
 </div>
 </div>
 </section>
@@ -662,11 +587,11 @@ Du har 3 genopkald i denne uge:
 <h3 class="disp" style="margin: 0; font-size: 36px; line-height: 1.05; font-weight: 800">Betal kun for den taletid, du bruger.</h3>
 <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #5A4D43">Ud af regnearket og ind i et rigtigt system — uden store faste udgifter. Få overblik over kunder, statusser og opfølgninger fra dag et.</p>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px">
-<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Fra 199 kr./md. — 0 kr. i oprettelse</li>
+<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Fra 199 kr./md. Forudbetalt saldo, ingen overraskelser</li>
 <li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Dialer med auto-dial, leads og kampagner</li>
 <li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C2531A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Kalender, aftaler og opkaldshistorik</li>
 </ul>
-<a class="btn magnet" href="#priser" style="margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 16px 24px; border-radius: 999px; background: #EB7A34; color: #1A1410; font-weight: 600; text-decoration: none; min-height: 44px">Se Pay as you go</a>
+<a class="btn magnet" href="/#priser" style="margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 16px 24px; border-radius: 999px; background: #EB7A34; color: #1A1410; font-weight: 600; text-decoration: none; min-height: 44px">Se Pay as you go</a>
 </div>
 <div class="reveal card r-right" style="flex: 1 1 440px; min-width: 0; background: #1A1410; color: #FBF7F2; border-radius: 32px; padding: 40px; display: flex; flex-direction: column; gap: 20px">
 <span class="mono" style="align-self: flex-start; font-size: 12px; letter-spacing: .1em; padding: 6px 12px; border-radius: 999px; background: #2A1F18; color: #F4A574">SALGSTEAMS</span>
@@ -674,10 +599,10 @@ Du har 3 genopkald i denne uge:
 <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #C9BBAE">Til teams, der lever af telefonen. Tilbudsmails, statusser, daglige rapporter og integration til jeres nuværende CRM.</p>
 <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; font-size: 16px">
 <li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Ubegrænsede opkald til danske numre</li>
-<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Automatisk tilbudshåndtering og fakturering</li>
+<li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Tilbud, der følger op på sig selv</li>
 <li style="display: flex; gap: 10px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>Integration med jeres eksisterende CRM</li>
 </ul>
-<a class="btn magnet" href="#priser" style="margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 16px 24px; border-radius: 999px; background: #FBF7F2; color: #1A1410; font-weight: 600; text-decoration: none; min-height: 44px">Se Ubegrænset</a>
+<a class="btn magnet" href="/#priser" style="margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 16px 24px; border-radius: 999px; background: #FBF7F2; color: #1A1410; font-weight: 600; text-decoration: none; min-height: 44px">Se Ubegrænset</a>
 </div>
 </div>
 </div>
@@ -753,7 +678,7 @@ Du har 3 genopkald i denne uge:
 </div>
 <div class="pmuted" style="font-size: 14px; color: #6B5E54; margin-top: -10px">Skræddersyet til dit behov</div>
 <ul style="list-style: none; margin: 0; padding: 20px 0 0; border-top: 1px solid rgba(140,123,110,.3); display: flex; flex-direction: column; gap: 12px; font-size: 15px">
-<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Skræddersyet antal brugere</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Alt i B2B</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>B2B lead-indsamling</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Automatisk fakturagenerering</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Professionel tilbudshåndtering</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Prioriteret support</li>
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Skræddersyet antal brugere</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Alt i B2B</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>B2B lead-indsamling</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Tilbudskampagner med automatisk opfølgning</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Professionel tilbudshåndtering</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Prioriteret support</li>
 </ul>
 <a class="btn pcta" href="#" style="display: flex; justify-content: center; align-items: center; gap: 8px; padding: 16px; border-radius: 999px; background: #1A1410; color: #FBF7F2; font-weight: 600; text-decoration: none; min-height: 44px">Kontakt os</a>
 <div class="pmuted" style="text-align: center; font-size: 13px; color: #6B5E54">Ingen kreditkort påkrævet</div>
@@ -816,7 +741,7 @@ Du har 3 genopkald i denne uge:
 </div>
 <div class="pmuted" style="font-size: 14px; color: #6B5E54; margin-top: -10px">Ubegrænset ringetid</div>
 <ul style="list-style: none; margin: 0; padding: 20px 0 0; border-top: 1px solid rgba(140,123,110,.3); display: flex; flex-direction: column; gap: 12px; font-size: 15px">
-<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Ubegrænsede opkald til danske numre</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Alt i B2B</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>B2B lead-indsamling &amp; fakturering</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>CRM-integration</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Prioriteret support</li>
+<li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Ubegrænsede opkald til danske numre</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Alt i B2B</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>B2B Lead Scraper &amp; Google Maps-scraper</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>CRM-integration</li><li style="display: flex; gap: 10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EB7A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 2px"><path d="M5 12l5 5 9-10"></path></svg>Prioriteret support</li>
 </ul>
 <a class="btn pcta" href="#" style="display: flex; justify-content: center; align-items: center; gap: 8px; padding: 16px; border-radius: 999px; background: #1A1410; color: #FBF7F2; font-weight: 600; text-decoration: none; min-height: 44px">Vælg Unlimited Pro</a>
 <div class="pmuted" style="text-align: center; font-size: 13px; color: #6B5E54">Ingen kreditkort påkrævet</div>
@@ -909,7 +834,7 @@ Du har 3 genopkald i denne uge:
 <div style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px">
 <a class="btn magnet" href="#" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 28px; border-radius: 999px; background: #1A1410; color: #FBF7F2; font-weight: 600; font-size: 17px; text-decoration: none; min-height: 44px">Prøv 14 dage gratis
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
-<a class="btn magnet" href="#" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 28px; border-radius: 999px; background: transparent; color: #1A1410; font-weight: 600; font-size: 17px; text-decoration: none; border: 2px solid #1A1410; min-height: 44px">Book intro og gennemgang</a>
+<a class="btn magnet" href="/book-intro" style="display: inline-flex; align-items: center; gap: 10px; padding: 18px 28px; border-radius: 999px; background: transparent; color: #1A1410; font-weight: 600; font-size: 17px; text-decoration: none; border: 2px solid #1A1410; min-height: 44px">Book intro og gennemgang</a>
 </div>
 </div>
 </div>
@@ -930,11 +855,11 @@ Du har 3 genopkald i denne uge:
 
 <div class="ft-cols">
 <div class="ft-col"><h4>PRODUKT</h4><ul>
-<li><a href="#">Funktioner</a></li><li><a href="#">Sådan virker det</a></li><li><a href="#priser">Priser</a></li><li><a href="#">Aura AI</a></li><li><a href="#">Integrationer</a></li><li><a href="#">FAQ</a></li></ul></div>
+<li><a href="#">Funktioner</a></li><li><a href="#">Sådan virker det</a></li><li><a href="/#priser">Priser</a></li><li><a href="#">Aura AI</a></li><li><a href="/#integrationer">Integrationer</a></li><li><a href="#">FAQ</a></li></ul></div>
 <div class="ft-col"><h4>VIRKSOMHED</h4><ul>
-<li><a href="#">Om os</a></li><li><a href="#">Kunder</a></li><li><a href="#">Blog</a></li><li><a href="#">Hjælp &amp; support</a></li><li><a href="#">Book en demo</a></li></ul></div>
+<li><a href="/om-os">Om os</a></li><li><a href="#">Kunder</a></li><li><a href="#">Blog</a></li><li><a href="#">Hjælp &amp; support</a></li><li><a href="/book-intro">Book en demo</a></li></ul></div>
 <div class="ft-col"><h4>KONTAKT</h4><ul>
-<li><a href="mailto:[EMAIL]">[EMAIL]</a></li><li><a href="tel:[TELEFON]">[TELEFON]</a></li><li><span style="color:#C9BBAE">[ADRESSE]<br>[POSTNR BY]</span></li><li><span style="color:#C9BBAE">CVR: [CVR-NR]</span></li></ul></div>
+<li><a href="mailto:hello@3sadialer.io">hello@3sadialer.io</a></li><li><a href="tel:[TELEFON]">[TELEFON]</a></li><li><span style="color:#C9BBAE">[ADRESSE]<br>[POSTNR BY]</span></li><li><span style="color:#C9BBAE">CVR: [CVR-NR]</span></li></ul></div>
 </div>
 </div>
 
@@ -948,8 +873,8 @@ Du har 3 genopkald i denne uge:
 </div>
 
 <div class="ft-bottom">
-<span>© 2026 3SA Studio. Alle rettigheder forbeholdt.</span>
-<nav aria-label="Juridisk"><a href="#">Servicevilkår</a><a href="#">Privatlivspolitik</a><a href="#">Cookies</a><a href="#">Sikkerhed &amp; Compliance</a></nav>
+<span>© 2026 3SA Group. Alle rettigheder forbeholdt.</span>
+<nav aria-label="Juridisk"><a href="/servicevilkaar">Servicevilkår</a><a href="/privatlivspolitik">Privatlivspolitik</a><a href="#">Cookies</a><a href="/sikkerhed">Sikkerhed &amp; Compliance</a></nav>
 <div class="ft-social">
 <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"></path></svg></a>
 <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg></a>
@@ -962,206 +887,6 @@ Du har 3 genopkald i denne uge:
 </footer>
 
 </div>
-<script>
-(function(){
-var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-// ord-for-ord overskrifter
-document.querySelectorAll('h2.disp, blockquote.disp').forEach(function(h){
-  var i=0;
-  Array.prototype.slice.call(h.childNodes).forEach(function(n){
-    if(n.nodeType===3){
-      var frag=document.createDocumentFragment();
-      n.textContent.split(/(\s+)/).forEach(function(part){
-        if(!part)return;
-        if(/^\s+$/.test(part)){frag.appendChild(document.createTextNode(part));return;}
-        var w=document.createElement('span');w.className='w';w.textContent=part;w.style.transitionDelay=(i++*0.05)+'s';frag.appendChild(w);
-      });
-      h.replaceChild(frag,n);
-    }else if(n.nodeType===1&&n.tagName!=='BR'){n.classList.add('w');n.style.transitionDelay=(i++*0.05)+'s';}
-  });
-  h.classList.add('split');
-});
-// stagger soeskende
-var seen=new Set();
-document.querySelectorAll('.reveal').forEach(function(el){
-  var p=el.parentNode;if(seen.has(p))return;seen.add(p);
-  var sib=Array.prototype.filter.call(p.children,function(c){return c.classList.contains('reveal');});
-  if(sib.length>1)sib.forEach(function(c,k){c.dataset.delay=k*0.12;});
-});
-// count-up
-function countUp(el){
-  if(el.dataset.done)return;el.dataset.done=1;
-  var m=el.textContent.match(/^(\D*)([\d.]+)(.*)$/);if(!m)return;
-  var target=parseInt(m[2].replace(/\./g,''),10),t0=null,dur=1600;
-  if(!target||reduce)return;
-  function step(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/dur);var e=1-Math.pow(1-k,4);
-    el.textContent=m[1]+Math.round(target*e).toLocaleString('da-DK')+m[3];if(k<1)requestAnimationFrame(step);}
-  requestAnimationFrame(step);
-}
-// observer
-var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(en){
-    if(!en.isIntersecting)return;var el=en.target;
-    var d=parseFloat(el.dataset.delay||0);
-    if(d){el.style.transitionDelay=d+'s';setTimeout(function(){el.style.transitionDelay='';},d*1000+1100);}
-    el.classList.add('is-in');
-    el.querySelectorAll('.count').forEach(countUp);
-    io.unobserve(el);
-  });
-},{threshold:0.15,rootMargin:'0px 0px -8% 0px'});
-document.querySelectorAll('.reveal,.split,[data-io]').forEach(function(el){io.observe(el);});
-if(!('IntersectionObserver' in window))document.querySelectorAll('.reveal,.split,[data-io]').forEach(function(el){el.classList.add('is-in');});
-
-// scroll: progress, parallax, morkt band, marquee-skew
-var prog=document.getElementById('progress'),par=document.querySelectorAll('[data-parallax]'),band=document.getElementById('funktioner'),marq=document.getElementById('marq');
-var lastY=window.scrollY,skew=0,ticking=false;
-function onScroll(){
-  var y=window.scrollY,h=document.documentElement.scrollHeight-innerHeight;
-  prog.style.transform='scaleX('+(h>0?y/h:0)+')';
-  if(!reduce){
-    par.forEach(function(el){el.style.setProperty('--py',(y*parseFloat(el.dataset.parallax))+'px');});
-    var r=band.getBoundingClientRect(),k=Math.max(0,Math.min(1,(innerHeight-r.top)/(innerHeight*0.8)));
-    var inset=(1-k)*6;band.style.clipPath='inset(0 '+inset+'% 0 '+inset+'% round 48px 48px 0 0)';
-    skew+=(Math.max(-12,Math.min(12,(y-lastY)*0.4))-skew)*0.3;
-    marq.style.transform='skewX('+(-skew)+'deg)';
-  }
-  lastY=y;ticking=false;
-}
-window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
-onScroll();
-setInterval(function(){if(Math.abs(skew)>0.05){skew*=0.8;marq.style.transform='skewX('+(-skew)+'deg)';}},50);
-
-
-
-// WebGL grain-gradient baggrund (inspireret af paper-design GrainGradient, "corners")
-(function(){
-  var cv=document.getElementById('shader'),gl=cv.getContext('webgl',{antialias:false,alpha:false,premultipliedAlpha:false});
-  if(!gl)return;
-  var vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-  var fs='precision highp float;uniform vec2 r;uniform float t;uniform vec3 c0,c1,c2,c3;uniform float soft,inten,grain;\n'+
-  'vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}vec3 permute(vec3 x){return mod289(((x*34.)+1.)*x);}\n'+
-  'float snoise(vec2 v){const vec4 C=vec4(.211324865405187,.366025403784439,-.577350269189626,.024390243902439);vec2 i=floor(v+dot(v,C.yy));vec2 x0=v-i+dot(i,C.xx);vec2 i1=(x0.x>x0.y)?vec2(1.,0.):vec2(0.,1.);vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;i=mod289(i);vec3 p=permute(permute(i.y+vec3(0.,i1.y,1.))+i.x+vec3(0.,i1.x,1.));vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);m=m*m;m=m*m;vec3 x=2.*fract(p*C.www)-1.;vec3 h=abs(x)-.5;vec3 ox=floor(x+.5);vec3 a0=x-ox;m*=1.79284291400159-.85373472095314*(a0*a0+h*h);vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;return 130.*dot(m,g);}\n'+
-  'float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<4;i++){v+=a*snoise(p);p=p*2.03+vec2(7.1,3.3);a*=.5;}return v;}\n'+
-  'float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}\n'+
-  'void main(){vec2 uv=gl_FragCoord.xy/r;vec2 q=(gl_FragCoord.xy-.5*r)/min(r.x,r.y);float tt=t*.12;\n'+
-  'float n=fbm(q*1.6+vec2(tt*.7,-tt*.5));float n2=fbm(q*2.2-vec2(tt*.4,tt*.6)+3.7);\n'+
-  'vec2 w=q+vec2(n,n2)*.35;\n'+
-  'vec2 p0=vec2(-.9,.75)+vec2(sin(tt*1.3),cos(tt*.9))*.25;vec2 p1=vec2(.95,-.8)+vec2(cos(tt*1.1),sin(tt*1.4))*.25;vec2 p2=vec2(.9,.8)+vec2(sin(tt*.8+2.),cos(tt*1.2+1.))*.3;vec2 p3=vec2(-.8,-.85)+vec2(cos(tt*1.5+1.),sin(tt*.7+3.))*.3;\n'+
-  'float s=mix(.55,1.6,soft);\n'+
-  'float w0=exp(-pow(length(w-p0),2.)/s);float w1=exp(-pow(length(w-p1),2.)/s);float w2=exp(-pow(length(w-p2),2.)/s)*.8;float w3=exp(-pow(length(w-p3),2.)/s)*.7;\n'+
-  'vec3 col=c0;col=mix(col,c1,clamp(w0*inten*1.6,0.,1.));col=mix(col,c2,clamp(w1*inten*1.6,0.,1.));col=mix(col,c3,clamp(w2*inten*1.4,0.,1.));col=mix(col,mix(c1,c3,.5),clamp(w3*inten*1.3,0.,1.));\n'+
-  'col=mix(col,c0,smoothstep(.1,.9,length(q)*.55-n*.15)*.35);\n'+
-  'float g=(hash(gl_FragCoord.xy+fract(t)*vec2(17.,31.))-.5)*grain;col+=g;\n'+
-  'gl_FragColor=vec4(col,1.);}';
-  function sh(type,src){var o=gl.createShader(type);gl.shaderSource(o,src);gl.compileShader(o);if(!gl.getShaderParameter(o,gl.COMPILE_STATUS)){console.warn(gl.getShaderInfoLog(o));return null;}return o;}
-  var v=sh(gl.VERTEX_SHADER,vs),f=sh(gl.FRAGMENT_SHADER,fs);if(!v||!f)return;
-  var pr=gl.createProgram();gl.attachShader(pr,v);gl.attachShader(pr,f);gl.linkProgram(pr);if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;gl.useProgram(pr);
-  var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
-  var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
-  var U=function(n){return gl.getUniformLocation(pr,n);};
-  function hex(h){return [parseInt(h.slice(1,3),16)/255,parseInt(h.slice(3,5),16)/255,parseInt(h.slice(5,7),16)/255];}
-  // farver: lys bund + orange / rav / fersken
-  gl.uniform3fv(U('c0'),hex('#FFEEDB'));gl.uniform3fv(U('c1'),hex('#F26A1E'));gl.uniform3fv(U('c2'),hex('#FFA03A'));gl.uniform3fv(U('c3'),hex('#FFC27A'));
-  gl.uniform1f(U('soft'),0.76);gl.uniform1f(U('inten'),0.62);gl.uniform1f(U('grain'),0.06);
-  var ur=U('r'),ut=U('t'),dpr=Math.min(1.5,window.devicePixelRatio||1);
-  function size(){cv.width=Math.floor(innerWidth*dpr*0.6);cv.height=Math.floor(innerHeight*dpr*0.6);gl.viewport(0,0,cv.width,cv.height);gl.uniform2f(ur,cv.width,cv.height);}
-  window.addEventListener('resize',size);size();
-  document.getElementById('bg').classList.add('gl');
-  var start=performance.now(),paused=false;
-  document.addEventListener('visibilitychange',function(){paused=document.hidden;if(!paused)frame();});
-  function frame(){if(paused)return;gl.uniform1f(ut,(performance.now()-start)/1000);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);if(!reduce)requestAnimationFrame(frame);}
-  frame();
-})();
-// levende baggrund: scroll-farveskift + cursor-glod
-var bgEl=document.getElementById('bg'),cur=bgEl.querySelector('.cursor');
-if(!reduce){
-  window.addEventListener('mousemove',function(e){bgEl.classList.add('has-cursor');cur.style.transform='translate('+e.clientX+'px,'+e.clientY+'px)';},{passive:true});
-  document.addEventListener('mouseleave',function(){bgEl.classList.remove('has-cursor');});
-  window.addEventListener('scroll',function(){var k=window.scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight);
-    bgEl.style.filter='hue-rotate('+(k*6)+'deg) saturate('+(1+k*0.15)+')';},{passive:true});
-}
-
-
-// header: skjul ved scroll ned, kompakt ved scroll, aktiv sektion, hover-pille
-var hd=document.getElementById('hd'),hnav=document.getElementById('hdnav'),hpill=hnav.querySelector('.hd-pill'),hlinks=hnav.querySelectorAll('a'),lastHY=0;
-function hdScroll(){var y=window.scrollY;hd.classList.toggle('scrolled',y>40);
-  if(!document.body.classList.contains('menu-open')){hd.classList.toggle('hide',y>lastHY&&y>320);}lastHY=y;}
-window.addEventListener('scroll',hdScroll,{passive:true});hdScroll();
-hlinks.forEach(function(a){a.addEventListener('mouseenter',function(){hnav.classList.add('has-pill');hpill.style.left=a.offsetLeft+'px';hpill.style.width=a.offsetWidth+'px';});});
-hnav.addEventListener('mouseleave',function(){hnav.classList.remove('has-pill');});
-var secIO=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){hlinks.forEach(function(a){a.classList.toggle('active',a.dataset.sec===e.target.id);});}});},{rootMargin:'-40% 0px -55% 0px'});
-['funktioner','saadan','priser','aura','faq'].forEach(function(id){var el=document.getElementById(id);if(el)secIO.observe(el);});
-// mobil-menu
-var burger=document.getElementById('burger'),mm=document.getElementById('mm');
-function setMenu(open){document.body.classList.toggle('menu-open',open);burger.setAttribute('aria-expanded',open);burger.setAttribute('aria-label',open?'Luk menu':'Åbn menu');mm.setAttribute('aria-hidden',!open);if(open)hd.classList.remove('hide');}
-burger.addEventListener('click',function(){setMenu(!document.body.classList.contains('menu-open'));});
-mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setTimeout(function(){setMenu(false);},150);});});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false);});
-window.addEventListener('resize',function(){if(innerWidth>900)setMenu(false);});
-
-// footer-logo: fliser samles + lyser op omkring musen
-var fb=document.getElementById('ftbig'),tiles=fb.querySelectorAll('i');
-new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)fb.classList.add('is-in');});},{threshold:.2}).observe(fb);
-if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  var COLS=36,ROWS=21;
-  fb.addEventListener('mousemove',function(e){var r=fb.getBoundingClientRect(),cx=(e.clientX-r.left)/r.width*COLS,cy=(e.clientY-r.top)/r.height*ROWS;
-    tiles.forEach(function(t,i){var dx=(i%COLS)+.5-cx,dy=Math.floor(i/COLS)+.5-cy;t.classList.toggle('hot',dx*dx+dy*dy<9);});});
-  fb.addEventListener('mouseleave',function(){tiles.forEach(function(t){t.classList.remove('hot');});});
-}
-// loader
-var loader=document.getElementById('loader');
-setTimeout(function(){loader.classList.add('done');},1350);
-setTimeout(function(){loader.remove();},2400);
-// ripple
-document.querySelectorAll('.btn').forEach(function(b){b.addEventListener('click',function(e){var r=b.getBoundingClientRect(),d=Math.max(r.width,r.height),sp=document.createElement('span');
-  sp.className='ripple';sp.style.width=sp.style.height=d+'px';sp.style.left=(e.clientX-r.left-d/2)+'px';sp.style.top=(e.clientY-r.top-d/2)+'px';b.appendChild(sp);setTimeout(function(){sp.remove();},700);});});
-// 3D-tilt paa alle kort
-if(!reduce){document.querySelectorAll('.card').forEach(function(c){
-  c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    c.classList.add('tilting');c.style.transform='perspective(900px) rotateY('+(x*6)+'deg) rotateX('+(-y*6)+'deg) translateY(-6px)';});
-  c.addEventListener('mouseleave',function(){c.style.transform='';setTimeout(function(){c.classList.remove('tilting');},200);});});}
-// sektioner fader ud naar de forlader skaermen
-var secs=document.querySelectorAll('section');
-window.addEventListener('scroll',function(){if(reduce)return;secs.forEach(function(sc){var r=sc.getBoundingClientRect();if(r.bottom<innerHeight*0.4&&r.bottom>0){sc.style.opacity=Math.max(.15,r.bottom/(innerHeight*0.4));}else sc.style.opacity='';});},{passive:true});
-if(!reduce){
-  // 3D-tilt paa hero-mockup
-  var tilt=document.getElementById('tilt');
-  tilt.addEventListener('mousemove',function(e){var r=tilt.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,yy=(e.clientY-r.top)/r.height-.5;
-    tilt.style.transform='perspective(1200px) rotateY('+(x*8)+'deg) rotateX('+(-yy*8)+'deg)';});
-  tilt.addEventListener('mouseleave',function(){tilt.style.transform='';});
-  // spotlight paa morke kort
-  document.querySelectorAll('.spot').forEach(function(c){c.addEventListener('mousemove',function(e){var r=c.getBoundingClientRect();
-    c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});});
-  // magnetiske knapper
-  document.querySelectorAll('.magnet').forEach(function(b){
-    b.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect();b.style.translate=((e.clientX-r.left-r.width/2)*0.18)+'px '+((e.clientY-r.top-r.height/2)*0.25)+'px';});
-    b.addEventListener('mouseleave',function(){b.style.translate='';});
-  });
-}
-var sec=47;var timers=document.querySelectorAll('.js-timer');
-setInterval(function(){sec++;var t=Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0');timers.forEach(function(e){e.textContent=t;});},1000);
-var chips=document.querySelectorAll('[data-status]'),st=0;
-setInterval(function(){chips[st].classList.remove('on');st=(st+1)%chips.length;chips[st].classList.add('on');},2200);
-var tips=['Nævn at Google Ads-pakken starter ved 5.000 kr./md.','Kunden nævnte budget — spørg til tidshorisont.','Godt tidspunkt at foreslå et tilbud på mail.'],ti=0,tip=document.getElementById('tip');
-setInterval(function(){ti=(ti+1)%tips.length;tip.textContent=tips[ti];},4500);
-// beregner
-var r1=document.getElementById('r1'),r2=document.getElementById('r2'),r3=document.getElementById('r3');
-function fmt(n){return Math.round(n).toLocaleString('da-DK');}
-function set(id,v){document.getElementById('o-'+id).textContent=v;}
-function calc(){var s=+r1.value,c=+r2.value,a=+r3.value,w=s*c*5,today=w*a,after=w,saved=today-after;
-set('sellers',s);set('calls',c);set('admin',a);set('hoursWeek',fmt(saved/60));set('hoursMonth',fmt(saved*4.33/60));set('extraCalls',fmt(saved*4.33/4));set('todayH',fmt(today/60));set('afterH',fmt(after/60));
-document.getElementById('o-bar').style.width=Math.max(4,100/a)+'%';}
-[r1,r2,r3].forEach(function(r){r.addEventListener('input',calc);});calc();
-// priser
-var a=document.getElementById('segA'),b=document.getElementById('segB'),pa=document.getElementById('plans-payg'),pu=document.getElementById('plans-unl');
-function pick(u){a.classList.toggle('on',!u);b.classList.toggle('on',u);a.setAttribute('aria-pressed',!u);b.setAttribute('aria-pressed',u);pa.hidden=u;pu.hidden=!u;var g=u?pu:pa;Array.prototype.forEach.call(g.children,function(c,k){c.classList.remove('is-in');void c.offsetWidth;c.style.transitionDelay=(k*0.1)+'s';c.classList.add('is-in');setTimeout(function(){c.style.transitionDelay='';},1300);});}
-a.addEventListener('click',function(){pick(false);});b.addEventListener('click',function(){pick(true);});
-// faq
-var btns=document.querySelectorAll('.faqbtn');
-btns.forEach(function(btn){btn.addEventListener('click',function(){var open=btn.getAttribute('aria-expanded')==='true';
-btns.forEach(function(o){o.setAttribute('aria-expanded','false');o.querySelector('span').style.transform='none';o.parentNode.querySelector('.faqans').hidden=true;});
-if(!open){btn.setAttribute('aria-expanded','true');btn.querySelector('span').style.transform='rotate(45deg)';btn.parentNode.querySelector('.faqans').hidden=false;}});});
-})();
-</script>
+<script src="/assets/site.js"></script>
 </body>
 </html>
