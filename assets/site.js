@@ -169,6 +169,12 @@ if(tnav){var tl=tnav.querySelectorAll('a'),tb=document.querySelectorAll('.tour-b
   tb.forEach(function(s){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){tl.forEach(function(a){a.classList.toggle('active',a.dataset.t===e.target.id);});}});},{rootMargin:'-30% 0px -60% 0px'}).observe(s);});
   window.addEventListener('scroll',function(){var r=tlist.getBoundingClientRect(),k=Math.max(0,Math.min(1,(innerHeight*0.5-r.top)/r.height));tp.style.width=(k*100)+'%';},{passive:true});
 }
+// brancher: skift eksempel
+var indTabs=document.querySelectorAll('.ind-tab');
+if(indTabs.length){var indPanes=document.querySelectorAll('.ind-pane');
+  indTabs.forEach(function(t){t.addEventListener('click',function(){var k=t.dataset.ind;indTabs.forEach(function(x){x.classList.toggle('on',x===t);});
+    indPanes.forEach(function(p){var on=p.dataset.ind===k;if(on&&!p.classList.contains('on')){p.classList.add('on');p.querySelectorAll('.ind-copy>*,.ind-pts li,.ind-scene').forEach(function(el){el.style.animation='none';void el.offsetWidth;el.style.animation='';});}else if(!on)p.classList.remove('on');});});});
+}
 // loader
 var loader=document.getElementById('loader');
 setTimeout(function(){if(loader)loader.classList.add('done');},1350);
