@@ -481,3 +481,20 @@ body.menu-open{overflow:hidden}
 .cmp-card[data-mode="b"] .cmp-cta{background:#FBF7F2}
 .cmp-flash{animation:cmpflash .6s}
 @keyframes cmpflash{0%{opacity:.4;transform:translateY(8px)}100%{opacity:1;transform:none}}
+
+/* ---- hero: integrationslogoer ---- */
+.hlogos{display:flex;flex-wrap:wrap;align-items:center;gap:20px 32px;padding:20px 28px;border-radius:24px;background:rgba(255,255,255,.62);border:1px solid rgba(234,223,211,.8)}
+.hlogos-lbl{display:flex;flex-direction:column;gap:2px;min-width:200px}
+.hlogos-lbl .mono{font-size:11px;letter-spacing:.14em;color:#B4501A}
+.hlogos-lbl span:last-child{font-size:14px;font-weight:500;color:#5A4D43}
+.hlogos-row{flex:1 1 560px;display:flex;flex-wrap:wrap;justify-content:space-around;gap:12px 24px}
+.hlogo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#3F352D;font-size:14px;font-weight:600;padding:6px 10px 6px 6px;border-radius:999px;transition:transform .35s cubic-bezier(.3,1.5,.5,1),background .3s;opacity:0;transform:translateY(10px)}
+.reveal.is-in .hlogo{animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) forwards}
+.reveal.is-in .hlogo:nth-child(2){animation-delay:.08s}.reveal.is-in .hlogo:nth-child(3){animation-delay:.16s}.reveal.is-in .hlogo:nth-child(4){animation-delay:.24s}.reveal.is-in .hlogo:nth-child(5){animation-delay:.32s}
+.hlogo:hover{background:rgba(26,20,16,.05);transform:translateY(-3px)}
+.hlogo-ic{width:40px;height:40px;border-radius:12px;background:#FFFFFF;border:1px solid #EADFD3;display:flex;align-items:center;justify-content:center;position:relative;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.hlogo:hover .hlogo-ic{transform:rotate(-8deg) scale(1.1)}
+.hlogo-ic img{width:22px;height:22px;display:block}
+.hlogo-ic .int-fallback{font-size:16px}
+.hlogo-ic.nologo img{display:none}.hlogo-ic.nologo .int-fallback{display:block}
+@media (max-width:760px){.hlogos{padding:18px}.hlogos-row{justify-content:flex-start}.hlogo span:last-child{display:none}.hlogo{padding:4px}}
