@@ -32,3 +32,8 @@
   from = "/terms"
   to = "/servicevilkaar"
   status = 301
+
+[[redirects]]
+  from = "/contact"
+  to = "/kontakt"
+  status = 301

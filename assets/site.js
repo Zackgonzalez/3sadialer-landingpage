@@ -179,6 +179,14 @@ if(indTabs.length){var indPanes=document.querySelectorAll('.ind-pane');
   indTabs.forEach(function(t){t.addEventListener('click',function(){var k=t.dataset.ind;indTabs.forEach(function(x){x.classList.toggle('on',x===t);});
     indPanes.forEach(function(p){var on=p.dataset.ind===k;if(on&&!p.classList.contains('on')){p.classList.add('on');p.querySelectorAll('.ind-copy>*,.ind-pts li,.ind-scene').forEach(function(el){el.style.animation='none';void el.offsetWidth;el.style.animation='';});}else if(!on)p.classList.remove('on');});});});
 }
+// kontakt: kategori -> hint og svartid, tegn-taeller
+var kcats=document.querySelectorAll('.kt input');
+if(kcats.length){var KC={"Support": ["Vi svarer typisk inden for 4 timer på hverdage", "Beskriv gerne, hvad der sker, og hvilken kampagne eller bruger det gælder."], "Salg & priser": ["Vi vender tilbage inden for 24 timer", "Fortæl kort, hvor mange sælgere I er, og hvad I ringer om i dag."], "Integrationer": ["Vi vender tilbage inden for 24 timer", "Hvilket system vil I koble på, og hvad skal flyde imellem dem?"], "Partnerskab": ["Vi vender tilbage inden for 2 hverdage", "Fortæl om jer og hvad I har i tankerne."], "Presse": ["Vi vender tilbage inden for 24 timer", "Hvad handler artiklen om, og hvornår er din deadline?"], "Faktura & konto": ["Vi svarer typisk inden for 4 timer på hverdage", "Skriv gerne organisationsnavn, så finder vi jer hurtigt."]},kh=document.getElementById('khint'),ks=document.getElementById('ksla'),km=document.getElementById('k-msg'),kc=document.getElementById('kcount');
+  function kApply(v){var d=KC[v];if(!d)return;kh.textContent=d[1];ks.lastChild.textContent=' '+d[0];ks.classList.remove('pop');void ks.offsetWidth;ks.classList.add('pop');km.placeholder=d[1];}
+  kcats.forEach(function(i){i.addEventListener('change',function(){kApply(i.value);var s2=document.getElementById('kstep2');if(innerWidth<900)s2.scrollIntoView({behavior:'smooth',block:'start'});});});
+  km.addEventListener('input',function(){kc.textContent=km.value.length;});
+  document.querySelector('.kform').addEventListener('submit',function(e){var bad=[].filter.call(this.querySelectorAll('[required]'),function(f){return !f.checkValidity();});if(bad.length){e.preventDefault();bad[0].closest('div').classList.add('kshake');setTimeout(function(){bad[0].closest('div').classList.remove('kshake');},450);bad[0].focus();bad[0].reportValidity();}});
+}
 // loader
 var loader=document.getElementById('loader');
 setTimeout(function(){if(loader)loader.classList.add('done');},1350);
