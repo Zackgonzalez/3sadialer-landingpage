@@ -215,9 +215,9 @@ if(tip)setInterval(function(){ti=(ti+1)%tips.length;tip.textContent=tips[ti];},4
 var r1=document.getElementById('r1'),r2=document.getElementById('r2'),r3=document.getElementById('r3');
 function fmt(n){return Math.round(n).toLocaleString('da-DK');}
 function set(id,v){document.getElementById('o-'+id).textContent=v;}
-function calc(){var s=+r1.value,c=+r2.value,a=+r3.value,w=s*c*5,today=w*a,after=w,saved=today-after;
-set('sellers',s);set('calls',c);set('admin',a);set('hoursWeek',fmt(saved/60));set('hoursMonth',fmt(saved*4.33/60));set('extraCalls',fmt(saved*4.33/4));set('todayH',fmt(today/60));set('afterH',fmt(after/60));
-document.getElementById('o-bar').style.width=Math.max(4,100/a)+'%';}
+function calc(){var s=+r1.value,m=+r3.value,c=+r2.value,perSellerMonth=m*21/60,month=perSellerMonth*s,week=m*5*s/60;
+set('sellers',s);set('admin',m);set('calls',c);set('hoursMonth',fmt(month));set('hoursWeek',fmt(week));set('perSeller',fmt(perSellerMonth));set('extraCalls',fmt(month*60/c));set('days',fmt(month/7.4));
+var pct=Math.round(m/(7.4*60)*100);set('pct',pct);document.getElementById('o-bar').style.width=Math.max(3,pct)+'%';}
 if(r1&&r2&&r3){[r1,r2,r3].forEach(function(r){r.addEventListener('input',calc);});calc();}
 // priser
 var a=document.getElementById('segA'),b=document.getElementById('segB'),pa=document.getElementById('plans-payg'),pu=document.getElementById('plans-unl');

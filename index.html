@@ -242,52 +242,47 @@
 
 <!-- ============ BEREGNER ============ -->
 <section id="beregner" style="padding: 0 24px 120px">
-<div class="glass reveal r-scale" style="max-width: 1240px; margin: 0 auto; background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 36px; padding: clamp(28px, 4vw, 56px); display: flex; flex-wrap: wrap; gap: 48px">
+<div class="reveal r-scale glass" style="max-width: 1240px; margin: 0 auto; background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 36px; padding: clamp(28px, 4vw, 56px); display: flex; flex-wrap: wrap; gap: 48px">
 <div style="flex: 1 1 420px; min-width: 0">
 <div class="mono" style="font-size: 13px; letter-spacing: .12em; color: #B4501A">TIDSBEREGNER</div>
-<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.02; font-weight: 800">Hvor meget tid bruger I på alt andet end at sælge?</h2>
-<p style="margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: #5A4D43">Træk i sliderne og se, hvad manuel opfølgning koster jer hver uge.</p>
-
+<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.02; font-weight: 800">Hvor meget tid kan I frigøre til at sælge?</h2>
+<p style="margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: #5A4D43">Et samlet system sparer typisk 20–60 minutter pr. sælger om dagen: mindre søgning efter emner og noter, færre skift mellem systemer, hurtigere opkald og nemmere planlægning af opfølgning. Træk i sliderne og se, hvad det betyder for jer.</p>
 <div style="margin-top: 36px; display: flex; flex-direction: column; gap: 28px">
 <div>
 <label for="r1" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Sælgere i teamet</span><span class="mono" style="color: #B4501A"><span id="o-sellers">3</span></span></label>
 <input id="r1" type="range" min="1" max="25" value="3">
 </div>
 <div>
-<label for="r2" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Opkald pr. sælger pr. dag</span><span class="mono" style="color: #B4501A"><span id="o-calls">60</span></span></label>
-<input id="r2" type="range" min="10" max="150" step="5" value="60">
+<label for="r3" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Minutter sparet pr. sælger pr. dag</span><span class="mono" style="color: #B4501A"><span id="o-admin">40</span> min.</span></label>
+<input id="r3" type="range" min="10" max="90" step="5" value="40">
+<div style="display: flex; justify-content: space-between; font-size: 12px; color: #8C7B6E; margin-top: 6px"><span>Forsigtigt: 20 min.</span><span>Typisk: 40 min.</span><span>Ambitiøst: 60 min.</span></div>
 </div>
 <div>
-<label for="r3" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Minutters admin pr. opkald i dag</span><span class="mono" style="color: #B4501A"><span id="o-admin">4</span> min.</span></label>
-<input id="r3" type="range" min="2" max="10" value="4">
-<div style="font-size: 14px; color: #6B5E54; margin-top: 6px">Excel, noter, mails, finde nummer, planlægge genopkald</div>
+<label for="r2" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Minutter pr. samtale i gennemsnit</span><span class="mono" style="color: #B4501A"><span id="o-calls">5</span> min.</span></label>
+<input id="r2" type="range" min="2" max="15" value="5">
+<div style="font-size: 14px; color: #6B5E54; margin-top: 6px">Bruges til at omregne den sparede tid til ekstra samtaler</div>
 </div>
 </div>
 </div>
-
-<div style="flex: 1 1 420px; min-width: 0; background: rgba(251,247,242,.7); border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
+<div class="glass" style="flex: 1 1 420px; min-width: 0; background: rgba(251,247,242,.7); border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
 <div>
-<div style="font-size: 16px; color: #5A4D43">Tid I kan få tilbage</div>
+<div style="font-size: 16px; color: #5A4D43">Frigjort tid for hele teamet</div>
 <div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 6px">
-<span class="disp" style="font-size: clamp(64px, 7vw, 104px); font-weight: 800; line-height: 1; color: #C2531A"><span id="o-hoursWeek">9</span></span>
-<span style="font-size: 20px; font-weight: 600">timer om ugen</span>
-</div>
-</div>
-<div style="display: flex; flex-direction: column; gap: 14px">
-<div>
-<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A4D43; margin-bottom: 6px"><span>Admin i dag</span><span class="mono"><span id="o-todayH">60</span> t/uge</span></div>
-<div style="height: 14px; border-radius: 999px; background: #EADFD3"><div style="height: 100%; width: 100%; border-radius: 999px; background: #8C7B6E"></div></div>
-</div>
-<div>
-<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A4D43; margin-bottom: 6px"><span>Admin med 3SA</span><span class="mono"><span id="o-afterH">15</span> t/uge</span></div>
-<div style="height: 14px; border-radius: 999px; background: #EADFD3"><div style="height: 100%; width: 25%; border-radius: 999px; background: #EB7A34; transition: width .5s" id="o-bar"></div></div>
+<span class="disp" style="font-size: clamp(64px, 7vw, 104px); font-weight: 800; line-height: 1; color: #C2531A"><span id="o-hoursMonth">42</span></span>
+<span style="font-size: 20px; font-weight: 600">timer om måneden</span>
 </div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
-<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-hoursMonth">39</span> t</div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">frigivet pr. måned</div></div>
-<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800">+<span id="o-extraCalls">584</span></div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">ekstra opkald pr. måned</div></div>
+<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-hoursWeek">10</span> t</div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">frigivet pr. uge</div></div>
+<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-perSeller">14</span> t</div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">pr. sælger pr. måned</div></div>
+<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800">+<span id="o-extraCalls">504</span></div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">ekstra samtaler pr. måned</div></div>
+<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-days">5</span></div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">hele arbejdsdage pr. måned</div></div>
 </div>
-<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6B5E54">Estimat. Antager ca. 1 min. admin pr. opkald med 3SA (status, note og genopkald i samme skærmbillede) og 4 min. pr. ekstra opkald inkl. samtale. 5 arbejdsdage pr. uge.</p>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A4D43"><span>Andel af en 7,4-timers arbejdsdag</span><span class="mono"><span id="o-pct">9</span> %</span></div>
+<div style="height: 14px; border-radius: 999px; background: #EADFD3"><div style="height: 100%; width: 9%; border-radius: 999px; background: #EB7A34; transition: width .5s" id="o-bar"></div></div>
+</div>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6B5E54">Regneeksempel, ikke et dokumenteret gennemsnit. Beregnet med 21 arbejdsdage pr. måned. Tallet er frigjort kapacitet til fx flere kundesamtaler, ikke sparet løn. Undersøgelser fra McKinsey (2020) og Nucleus Research (2012) viser 10–15 % højere salgsproduktivitet med salgsautomatisering og CRM.</p>
 </div>
 </div>
 </section>
