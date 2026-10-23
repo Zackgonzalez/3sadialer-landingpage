@@ -445,3 +445,39 @@ body.menu-open{overflow:hidden}
 .int-logo.nologo img{display:none}.int-logo.nologo .int-fallback{display:block}
 .int-more{background:#1A1410;color:#FBF7F2;border-color:#1A1410;justify-content:center}
 .int-more b{margin-top:0}.int-more span{color:#C9BBAE}
+
+/* ---- sammenligning ---- */
+.cmp-toggle{position:relative;display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(26,20,16,.06);align-self:flex-start}
+.cmp-toggle button{position:relative;z-index:1;border:0;background:transparent;cursor:pointer;padding:12px 22px;border-radius:999px;font:500 15px 'Geist',sans-serif;color:#6B5E54;min-height:44px;transition:color .3s}
+.cmp-toggle button.on{color:#FBF7F2}
+.cmp-bar{position:absolute;top:4px;left:4px;height:calc(100% - 8px);border-radius:999px;background:#1A1410;transition:left .45s cubic-bezier(.2,.7,.2,1),width .45s,background .45s}
+.cmp-card{position:relative;background:rgba(251,247,242,.75);border:1px solid #EADFD3;border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:20px;transition:background .5s,border-color .5s}
+.cmp-card[data-mode="b"]{background:#1A1410;color:#FBF7F2;border-color:#1A1410}
+.cmp-card[data-mode="b"] .cmp-head .mono{color:#F4A574}
+.cmp-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.cmp-head .mono{font-size:12px;letter-spacing:.12em;color:#B4501A}
+.cmp-badge{font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;background:#FDECEC;color:#9F1D1D}
+.cmp-card[data-mode="b"] .cmp-badge{background:#173826;color:#7FD3A6}
+.cmp-big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.cmp-big .disp{font-size:clamp(56px,6vw,88px);font-weight:800;line-height:1;color:#C2531A;transition:color .5s}
+.cmp-card[data-mode="b"] .cmp-big .disp{color:#F4A574}
+.cmp-big span:last-child{font-size:17px;font-weight:600}
+.cmp-bars{display:flex;flex-direction:column;gap:12px}
+.cmp-bar-lbl{display:flex;justify-content:space-between;font-size:13px;color:#5A4D43;margin-bottom:6px}
+.cmp-card[data-mode="b"] .cmp-bar-lbl{color:#C9BBAE}
+.cmp-track{height:14px;border-radius:999px;background:rgba(26,20,16,.1);overflow:hidden}
+.cmp-card[data-mode="b"] .cmp-track{background:rgba(251,247,242,.12)}
+.cmp-track i{display:block;height:100%;border-radius:999px;background:#8C7B6E;transition:width .7s cubic-bezier(.2,.7,.2,1),background .5s}
+.cmp-track i.sell{background:#EB7A34}
+.cmp-card[data-mode="b"] .cmp-track i{background:#C9BBAE}.cmp-card[data-mode="b"] .cmp-track i.sell{background:#EB7A34}
+.cmp-table{width:100%;border-collapse:collapse;font-size:15px}
+.cmp-table td{padding:11px 0;border-top:1px solid rgba(26,20,16,.1)}
+.cmp-card[data-mode="b"] .cmp-table td{border-color:rgba(251,247,242,.12)}
+.cmp-table td:last-child{text-align:right;font-size:14px;white-space:nowrap}
+.cmp-table tr.hl td{color:#C2531A;font-weight:600}.cmp-card[data-mode="b"] .cmp-table tr.hl td{color:#F4A574}
+.cmp-table tr.hl td:first-child{font-weight:600}
+.cmp-note{margin:0;font-size:14px;line-height:1.55;color:#5A4D43}.cmp-card[data-mode="b"] .cmp-note{color:#C9BBAE}
+.cmp-cta{border:0;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:10px;padding:16px 24px;border-radius:999px;background:#EB7A34;color:#1A1410;font:600 16px 'Geist',sans-serif;min-height:52px}
+.cmp-card[data-mode="b"] .cmp-cta{background:#FBF7F2}
+.cmp-flash{animation:cmpflash .6s}
+@keyframes cmpflash{0%{opacity:.4;transform:translateY(8px)}100%{opacity:1;transform:none}}

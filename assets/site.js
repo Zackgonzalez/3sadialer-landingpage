@@ -215,9 +215,28 @@ if(tip)setInterval(function(){ti=(ti+1)%tips.length;tip.textContent=tips[ti];},4
 var r1=document.getElementById('r1'),r2=document.getElementById('r2'),r3=document.getElementById('r3');
 function fmt(n){return Math.round(n).toLocaleString('da-DK');}
 function set(id,v){document.getElementById('o-'+id).textContent=v;}
-function calc(){var s=+r1.value,m=+r3.value,c=+r2.value,perSellerMonth=m*21/60,month=perSellerMonth*s,week=m*5*s/60;
-set('sellers',s);set('admin',m);set('calls',c);set('hoursMonth',fmt(month));set('hoursWeek',fmt(week));set('perSeller',fmt(perSellerMonth));set('extraCalls',fmt(month*60/c));set('days',fmt(month/7.4));
-var pct=Math.round(m/(7.4*60)*100);set('pct',pct);document.getElementById('o-bar').style.width=Math.max(3,pct)+'%';}
+var cmpMode='a',cmpCard=document.getElementById('cmpCard');
+function fmt1(n){return (Math.round(n*10)/10).toLocaleString('da-DK');}
+function calc(){var s=+r1.value,c=+r2.value,a=+r3.value,WITH=2,DAY=7.4*60;
+  var adminNow=c*a,adminWith=c*Math.min(a,WITH),admin=cmpMode==='a'?adminNow:adminWith;
+  set('sellers',s);set('calls',c);set('admin',a);
+  var pct=Math.min(100,Math.round(admin/DAY*100));
+  set('bigH',fmt1(admin/60));set('pct',pct);set('pctS',100-pct);
+  document.getElementById('o-barA').style.width=pct+'%';document.getElementById('o-barS').style.width=(100-pct)+'%';
+  set('dayMin',Math.round(admin)+' min.');set('monthH',fmt1(admin*21/60)+' t');set('teamH',fmt1(admin*21*s/60)+' t');set('days',fmt1(admin*21*s/DAY));
+  var savedMonth=(adminNow-adminWith)*21*s/60;
+  set('saved',fmt1(savedMonth)+' t');set('extra',fmt(savedMonth*60/Math.max(3,a)));
+  document.getElementById('rowSaved').hidden=document.getElementById('rowExtra').hidden=cmpMode==='a';
+  document.getElementById('cmpLabel').textContent=cmpMode==='a'?'I DAG · MANUELT':'MED 3SA DIALER';
+  document.getElementById('cmpBadge').textContent=cmpMode==='a'?'Regneark, telefon og mail':'Alt i et skærmbillede';
+  document.getElementById('cmpNote').textContent=cmpMode==='a'?'Sådan ser regnestykket ud, når noter, statusser, tilbud og opfølgning ligger i hver sit system.':'Status, note, genopkald og tilbud klares i samme skærmbillede, mens dialeren finder næste emne. Resten af tiden går til at sælge.';
+  var go=document.getElementById('cmpGo');go.innerHTML=cmpMode==='a'?'Se hvordan det ser ud med 3SA Dialer <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>':'Tilbage til i dag';
+  cmpCard.dataset.mode=cmpMode;}
+function cmpSet(m){cmpMode=m;var A=document.getElementById('cmpA'),B=document.getElementById('cmpB'),bar=document.querySelector('.cmp-bar'),t=m==='a'?A:B;
+  A.classList.toggle('on',m==='a');B.classList.toggle('on',m==='b');bar.style.left=t.offsetLeft+'px';bar.style.width=t.offsetWidth+'px';
+  cmpCard.classList.remove('cmp-flash');void cmpCard.offsetWidth;cmpCard.classList.add('cmp-flash');calc();}
+if(cmpCard){document.getElementById('cmpA').addEventListener('click',function(){cmpSet('a');});document.getElementById('cmpB').addEventListener('click',function(){cmpSet('b');});
+  document.getElementById('cmpGo').addEventListener('click',function(){cmpSet(cmpMode==='a'?'b':'a');});setTimeout(function(){cmpSet('a');},50);window.addEventListener('resize',function(){cmpSet(cmpMode);});}
 if(r1&&r2&&r3){[r1,r2,r3].forEach(function(r){r.addEventListener('input',calc);});calc();}
 // priser
 var a=document.getElementById('segA'),b=document.getElementById('segB'),pa=document.getElementById('plans-payg'),pu=document.getElementById('plans-unl');

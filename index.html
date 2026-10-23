@@ -243,46 +243,50 @@
 <!-- ============ BEREGNER ============ -->
 <section id="beregner" style="padding: 0 24px 120px">
 <div class="reveal r-scale glass" style="max-width: 1240px; margin: 0 auto; background: rgba(255,255,255,.62); border: 1px solid #EADFD3; border-radius: 36px; padding: clamp(28px, 4vw, 56px); display: flex; flex-wrap: wrap; gap: 48px">
-<div style="flex: 1 1 420px; min-width: 0">
+<div style="flex: 1 1 400px; min-width: 0">
 <div class="mono" style="font-size: 13px; letter-spacing: .12em; color: #B4501A">TIDSBEREGNER</div>
-<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.02; font-weight: 800">Hvor meget tid kan I frigøre til at sælge?</h2>
-<p style="margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: #5A4D43">Et samlet system sparer typisk 20–60 minutter pr. sælger om dagen: mindre søgning efter emner og noter, færre skift mellem systemer, hurtigere opkald og nemmere planlægning af opfølgning. Træk i sliderne og se, hvad det betyder for jer.</p>
+<h2 class="disp" style="margin: 16px 0 0; font-size: clamp(32px, 3.6vw, 52px); line-height: 1.02; font-weight: 800">Hvor meget tid går der til admin i dag?</h2>
+<p style="margin: 16px 0 0; font-size: 17px; line-height: 1.6; color: #5A4D43">Vælg, hvordan jeres hverdag ser ud nu. Så viser vi regnestykket, først uden og derefter med 3SA Dialer.</p>
 <div style="margin-top: 36px; display: flex; flex-direction: column; gap: 28px">
 <div>
 <label for="r1" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Sælgere i teamet</span><span class="mono" style="color: #B4501A"><span id="o-sellers">3</span></span></label>
 <input id="r1" type="range" min="1" max="25" value="3">
 </div>
 <div>
-<label for="r3" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Minutter sparet pr. sælger pr. dag</span><span class="mono" style="color: #B4501A"><span id="o-admin">40</span> min.</span></label>
-<input id="r3" type="range" min="10" max="90" step="5" value="40">
-<div style="display: flex; justify-content: space-between; font-size: 12px; color: #8C7B6E; margin-top: 6px"><span>Forsigtigt: 20 min.</span><span>Typisk: 40 min.</span><span>Ambitiøst: 60 min.</span></div>
+<label for="r2" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Opkald pr. sælger pr. dag</span><span class="mono" style="color: #B4501A"><span id="o-calls">40</span></span></label>
+<input id="r2" type="range" min="10" max="150" step="5" value="40">
 </div>
 <div>
-<label for="r2" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Minutter pr. samtale i gennemsnit</span><span class="mono" style="color: #B4501A"><span id="o-calls">5</span> min.</span></label>
-<input id="r2" type="range" min="2" max="15" value="5">
-<div style="font-size: 14px; color: #6B5E54; margin-top: 6px">Bruges til at omregne den sparede tid til ekstra samtaler</div>
+<label for="r3" style="display: flex; justify-content: space-between; font-weight: 600; font-size: 16px"><span>Minutters admin pr. opkald i dag</span><span class="mono" style="color: #B4501A"><span id="o-admin">6</span> min.</span></label>
+<input id="r3" type="range" min="2" max="15" value="6">
+<div style="font-size: 14px; color: #6B5E54; margin-top: 6px">Finde næste nummer, skrive note og status i regnearket, sende tilbud fra mailen, huske opfølgningen</div>
 </div>
 </div>
 </div>
-<div class="glass" style="flex: 1 1 420px; min-width: 0; background: rgba(251,247,242,.7); border-radius: 28px; padding: 36px; display: flex; flex-direction: column; gap: 28px">
-<div>
-<div style="font-size: 16px; color: #5A4D43">Frigjort tid for hele teamet</div>
-<div style="display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-top: 6px">
-<span class="disp" style="font-size: clamp(64px, 7vw, 104px); font-weight: 800; line-height: 1; color: #C2531A"><span id="o-hoursMonth">42</span></span>
-<span style="font-size: 20px; font-weight: 600">timer om måneden</span>
+
+<div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<div class="cmp-toggle" role="group" aria-label="Sammenlign">
+<button type="button" class="on" id="cmpA">Uden 3SA Dialer</button><button type="button" id="cmpB">Med 3SA Dialer</button><i class="cmp-bar"></i>
 </div>
+<div class="cmp-card glass" id="cmpCard" data-mode="a">
+<div class="cmp-head"><span class="mono" id="cmpLabel">I DAG · MANUELT</span><span class="cmp-badge" id="cmpBadge">Regneark, telefon og mail</span></div>
+<div class="cmp-big"><span class="disp" id="o-bigH">4,2</span><span>timer admin pr. sælger pr. dag</span></div>
+<div class="cmp-bars">
+<div><div class="cmp-bar-lbl"><span>Admin</span><span class="mono"><span id="o-pct">57</span> %</span></div><div class="cmp-track"><i id="o-barA" style="width: 57%"></i></div></div>
+<div><div class="cmp-bar-lbl"><span>Tid til at sælge</span><span class="mono"><span id="o-pctS">43</span> %</span></div><div class="cmp-track"><i class="sell" id="o-barS" style="width: 43%"></i></div></div>
 </div>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
-<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-hoursWeek">10</span> t</div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">frigivet pr. uge</div></div>
-<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-perSeller">14</span> t</div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">pr. sælger pr. måned</div></div>
-<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800">+<span id="o-extraCalls">504</span></div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">ekstra samtaler pr. måned</div></div>
-<div class="glass" style="background: rgba(255,255,255,.62); border-radius: 18px; padding: 20px"><div class="disp" style="font-size: 32px; font-weight: 800"><span id="o-days">5</span></div><div style="font-size: 14px; color: #5A4D43; margin-top: 4px">hele arbejdsdage pr. måned</div></div>
+<table class="cmp-table">
+<tr><td>Admin pr. sælger pr. dag</td><td class="mono" id="o-dayMin">240 min.</td></tr>
+<tr><td>Admin pr. sælger pr. måned</td><td class="mono" id="o-monthH">84 t</td></tr>
+<tr><td>Admin for hele teamet pr. måned</td><td class="mono" id="o-teamH">252 t</td></tr>
+<tr><td>Svarer til hele arbejdsdage pr. måned</td><td class="mono" id="o-days">34</td></tr>
+<tr class="hl" id="rowSaved" hidden><td>Frigjort tid for teamet pr. måned</td><td class="mono" id="o-saved">0 t</td></tr>
+<tr class="hl" id="rowExtra" hidden><td>Svarer til ekstra samtaler pr. måned</td><td class="mono" id="o-extra">0</td></tr>
+</table>
+<p class="cmp-note" id="cmpNote">Sådan ser regnestykket ud, når noter, statusser, tilbud og opfølgning ligger i hver sit system.</p>
+<button type="button" class="btn magnet cmp-cta" id="cmpGo">Se hvordan det ser ud med 3SA Dialer <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
 </div>
-<div style="display: flex; flex-direction: column; gap: 10px">
-<div style="display: flex; justify-content: space-between; font-size: 14px; color: #5A4D43"><span>Andel af en 7,4-timers arbejdsdag</span><span class="mono"><span id="o-pct">9</span> %</span></div>
-<div style="height: 14px; border-radius: 999px; background: #EADFD3"><div style="height: 100%; width: 9%; border-radius: 999px; background: #EB7A34; transition: width .5s" id="o-bar"></div></div>
-</div>
-<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6B5E54">Regneeksempel, ikke et dokumenteret gennemsnit. Beregnet med 21 arbejdsdage pr. måned. Tallet er frigjort kapacitet til fx flere kundesamtaler, ikke sparet løn.</p>
+<p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6B5E54">Regneeksempel med 21 arbejdsdage pr. måned og en 7,4-timers arbejdsdag. Med 3SA Dialer regner vi med ca. 2 minutters admin pr. opkald, fordi status, note, genopkald og tilbud klares i samme skærmbillede, mens dialeren finder næste emne. Tallet er frigjort kapacitet, ikke sparet løn.</p>
 </div>
 </div>
 </section>
