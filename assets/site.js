@@ -46,6 +46,10 @@ var io=new IntersectionObserver(function(entries){
   });
 },{threshold:0.15,rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.reveal,.split,[data-io]').forEach(function(el){io.observe(el);});
+// fallback: elementer man er scrollet forbi (fx via menu-link) vises alligevel
+var pendingRv=Array.prototype.slice.call(document.querySelectorAll('.reveal,.split,[data-io]'));
+function rvSweep(){if(!pendingRv.length)return;pendingRv=pendingRv.filter(function(el){if(el.classList.contains('is-in'))return false;var r=el.getBoundingClientRect();if(r.top<innerHeight*0.95&&r.bottom>-innerHeight){el.classList.add('is-in');el.querySelectorAll('.count').forEach(countUp);io.unobserve(el);return false;}return true;});}
+window.addEventListener('scroll',function(){clearTimeout(window.__rvT);window.__rvT=setTimeout(rvSweep,120);},{passive:true});setTimeout(rvSweep,600);
 if(!('IntersectionObserver' in window))document.querySelectorAll('.reveal,.split,[data-io]').forEach(function(el){el.classList.add('is-in');});
 
 // scroll: progress, parallax, morkt band, marquee-skew
