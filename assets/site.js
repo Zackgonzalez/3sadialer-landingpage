@@ -153,6 +153,22 @@ if(lgtoc){var lgLinks=lgtoc.querySelectorAll('a'),lgSecs=document.querySelectorA
 // book intro: kvittering efter afsendelse
 var biOk=document.getElementById('bi-success');
 if(biOk&&/[?&]sent=1/.test(location.search)){biOk.hidden=false;setTimeout(function(){biOk.scrollIntoView({block:'center',behavior:'smooth'});},1800);}
+// hero: rundvisning i scener
+var hsc=document.getElementById('hscenes');
+if(hsc){var hsTabs=hsc.querySelectorAll('.hs-tabs button'),hsScenes=hsc.querySelectorAll('.hs-scene'),hsBar=hsc.querySelector('.hs-bar'),hsI=0,hsT;
+  function hsGo(i){hsI=i;hsTabs.forEach(function(b,k){b.classList.toggle('on',k===i);});hsScenes.forEach(function(s,k){s.classList.toggle('on',k===i);});
+    var t=hsTabs[i];hsBar.style.left=t.offsetLeft+'px';hsBar.style.width=t.offsetWidth+'px';hsBar.style.animation='none';void hsBar.offsetWidth;hsBar.style.animation='';}
+  function hsAuto(){clearInterval(hsT);if(!reduce)hsT=setInterval(function(){hsGo((hsI+1)%hsScenes.length);},5000);}
+  hsTabs.forEach(function(b,k){b.addEventListener('click',function(){hsGo(k);hsAuto();});});
+  setTimeout(function(){hsGo(0);},100);window.addEventListener('resize',function(){hsGo(hsI);});hsAuto();
+  document.addEventListener('visibilitychange',function(){if(document.hidden)clearInterval(hsT);else hsAuto();});
+}
+// rundvisning: aktiv blok i sidemenu
+var tnav=document.getElementById('tournav');
+if(tnav){var tl=tnav.querySelectorAll('a'),tb=document.querySelectorAll('.tour-block'),tp=document.getElementById('tourprog'),tlist=document.querySelector('.tour-list');
+  tb.forEach(function(s){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){tl.forEach(function(a){a.classList.toggle('active',a.dataset.t===e.target.id);});}});},{rootMargin:'-30% 0px -60% 0px'}).observe(s);});
+  window.addEventListener('scroll',function(){var r=tlist.getBoundingClientRect(),k=Math.max(0,Math.min(1,(innerHeight*0.5-r.top)/r.height));tp.style.width=(k*100)+'%';},{passive:true});
+}
 // loader
 var loader=document.getElementById('loader');
 setTimeout(function(){if(loader)loader.classList.add('done');},1350);
