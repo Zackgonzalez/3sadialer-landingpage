@@ -22,3 +22,13 @@
   from = "/trust"
   to = "/sikkerhed"
   status = 301
+
+[[redirects]]
+  from = "/privacy"
+  to = "/privatlivspolitik"
+  status = 301
+
+[[redirects]]
+  from = "/terms"
+  to = "/servicevilkaar"
+  status = 301

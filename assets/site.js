@@ -144,6 +144,15 @@ if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     tiles.forEach(function(t,i){var dx=(i%COLS)+.5-cx,dy=Math.floor(i/COLS)+.5-cy;t.classList.toggle('hot',dx*dx+dy*dy<9);});});
   if(fb)fb.addEventListener('mouseleave',function(){tiles.forEach(function(t){t.classList.remove('hot');});});
 }
+// juridisk: aktiv sektion i indholdsfortegnelse + laesefremdrift
+var lgtoc=document.getElementById('lgtoc');
+if(lgtoc){var lgLinks=lgtoc.querySelectorAll('a'),lgSecs=document.querySelectorAll('.lg-sec'),lgp=document.getElementById('lgprog'),lgBody=document.querySelector('.lg-body');
+  new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){lgLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-20% 0px -70% 0px'}).observe&&lgSecs.forEach(function(s){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){lgLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'-20% 0px -70% 0px'}).observe(s);});
+  window.addEventListener('scroll',function(){var r=lgBody.getBoundingClientRect(),k=Math.max(0,Math.min(1,(innerHeight*0.5-r.top)/r.height));lgp.style.width=(k*100)+'%';},{passive:true});
+}
+// book intro: kvittering efter afsendelse
+var biOk=document.getElementById('bi-success');
+if(biOk&&/[?&]sent=1/.test(location.search)){biOk.hidden=false;setTimeout(function(){biOk.scrollIntoView({block:'center',behavior:'smooth'});},1800);}
 // loader
 var loader=document.getElementById('loader');
 setTimeout(function(){if(loader)loader.classList.add('done');},1350);
