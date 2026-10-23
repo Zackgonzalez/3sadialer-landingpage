@@ -430,3 +430,18 @@ body.menu-open{overflow:hidden}
 .ind-scene{position:relative;background:rgba(255,255,255,.8);border:1px solid #EADFD3;border-radius:24px;padding:20px 22px 22px;box-shadow:0 40px 80px -40px rgba(26,20,16,.3);opacity:0;transform:translateY(24px) scale(.97);animation:fadeUp .7s .15s cubic-bezier(.2,.7,.2,1) forwards}
 .ind-scene .hs-leads em{background:#E2F3E9;color:#1F7A4D}
 @media (max-width:900px){.ind-pane{grid-template-columns:1fr;gap:28px}.ind-panes{min-height:0}.ind-tab{padding:10px 14px;font-size:14px}}
+
+/* ---- integrationer ---- */
+.int-orbit{position:absolute;right:-140px;top:-140px;width:520px;height:520px;border-radius:50%;border:1px dashed rgba(194,83,26,.25);animation:spin 60s linear infinite;pointer-events:none}
+.int-orbit::after{content:"";position:absolute;inset:90px;border-radius:50%;border:1px solid rgba(235,122,52,.18)}
+.int-grid{flex:1 1 520px;min-width:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.int-card{background:rgba(255,255,255,.75);border:1px solid #EADFD3;border-radius:20px;padding:20px 18px;display:flex;flex-direction:column;gap:4px;min-height:150px}
+.int-card b{font-weight:600;font-size:15px;margin-top:12px}
+.int-card span{font-size:13px;color:#6B5E54;line-height:1.45}
+.int-logo{width:56px;height:56px;border-radius:16px;background:#FFFFFF;border:1px solid #EADFD3;display:flex;align-items:center;justify-content:center;position:relative;transition:transform .4s cubic-bezier(.3,1.5,.5,1)}
+.int-card:hover .int-logo{transform:rotate(-6deg) scale(1.08)}
+.int-logo img{width:30px;height:30px;display:block}
+.int-fallback{display:none;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;color:#C2531A}
+.int-logo.nologo img{display:none}.int-logo.nologo .int-fallback{display:block}
+.int-more{background:#1A1410;color:#FBF7F2;border-color:#1A1410;justify-content:center}
+.int-more b{margin-top:0}.int-more span{color:#C9BBAE}
